@@ -1,6 +1,6 @@
 import { Injectable, Inject, PLATFORM_ID } from '@angular/core';
 import { HttpClient, HttpHeaders } from '@angular/common/http';
-import { map, Observable } from 'rxjs';
+import { map, Observable, of } from 'rxjs';
 import { isPlatformBrowser } from '@angular/common';
 import { API_ENDPOINTS } from '../constants/api.constants';
 import { LoginInfo } from '../models/login-info.models';
@@ -16,29 +16,45 @@ export class UserService {
   ) {}
 
   getAllUsers(): Observable<User[]> {
+    if (!isPlatformBrowser(this.platformId)) {
+      return of([]);
+    }
     return this.http.get<User[]>(this.apiUrl);
   }
 
- getCurrentUser(): Observable<User> {
-  return this.http.get<LoginInfo>(`${this.apiUrl}/me`, {
-    headers: this.getAuthHeaders(),
-  }).pipe(
-    map((info: LoginInfo): User => ({
-      ...info,
-      loginTime: info.loginTime instanceof Date 
-        ? info.loginTime.toISOString() 
-        : info.loginTime
-    }))
-  );
-}
+  getCurrentUser(): Observable<User> {
+    if (!isPlatformBrowser(this.platformId)) {
+      return of(null as unknown as User);
+    }
+
+    return this.http.get<LoginInfo>(`${this.apiUrl}/me`, {
+      headers: this.getAuthHeaders(),
+    }).pipe(
+      map((info: LoginInfo): User => ({
+        ...info,
+        loginTime:
+          info.loginTime instanceof Date
+            ? info.loginTime.toISOString()
+            : info.loginTime
+      }))
+    );
+  }
 
   getUserById(id: number): Observable<User> {
+    if (!isPlatformBrowser(this.platformId)) {
+      return of(null as unknown as User);
+    }
+
     return this.http.get<User>(`${this.apiUrl}/${id}`, {
       headers: this.getAuthHeaders(),
     });
   }
 
   updateUserProfile(id: string, data: Partial<User>): Observable<User> {
+    if (!isPlatformBrowser(this.platformId)) {
+      return of(null as unknown as User);
+    }
+
     return this.http.put<User>(`${this.apiUrl}/${id}`, data, {
       headers: this.getAuthHeaders(),
     });
