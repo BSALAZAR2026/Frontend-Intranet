@@ -16,8 +16,9 @@
       "architect": {
         "build": {
           "builder": "@angular/build:application",
-          "options": {
+         "options": {
             "browser": "src/main.ts",
+            "prerender": false,
             "tsConfig": "tsconfig.app.json",
             "inlineStyleLanguage": "scss",
             "assets": [
@@ -26,14 +27,8 @@
                 "input": "public"
               }
             ],
-            "styles": [
-              "src/styles.scss"
-            ],
-            "server": "src/main.server.ts",
-            "outputMode": "server",
-            "ssr": {
-              "entry": "src/server.ts"
-            }
+            "styles": ["src/styles.scss"],
+            "outputMode": "static"
           },
           "configurations": {
             "production": {

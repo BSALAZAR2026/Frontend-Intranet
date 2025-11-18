@@ -1,6 +1,5 @@
 import { CommonModule } from '@angular/common';
 import { Component, signal } from '@angular/core';
-import { Router } from '@angular/router';
 import { HomeRightComponent } from "../home-right/home-right";
 
 @Component({
