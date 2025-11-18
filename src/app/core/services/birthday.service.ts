@@ -1,6 +1,7 @@
 import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { Observable } from 'rxjs';
+import { API_ENDPOINTS } from '../constants/api.constants';
 
 export interface BirthdayResponse {
   firstName: string;
@@ -11,7 +12,7 @@ export interface BirthdayResponse {
 
 @Injectable({ providedIn: 'root' })
 export class BirthdayService {
-  private readonly apiUrl = 'http://localhost:8080/api/users/birthdays'; 
+  private readonly apiUrl = `${API_ENDPOINTS.birthdays}`; 
 
   constructor(private http: HttpClient) {}
 
