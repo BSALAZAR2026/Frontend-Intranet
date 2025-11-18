@@ -1,0 +1,40 @@
+import { Component } from '@angular/core';
+import { FormsModule } from '@angular/forms';
+import { CommonModule } from '@angular/common';
+import { LoginFacade } from './login.facade';
+
+export interface LoginCredentials {
+  email: string;
+  password: string;
+}
+
+@Component({
+  selector: 'app-login',
+  standalone: true,
+  imports: [FormsModule, CommonModule],
+  templateUrl: './login.html',
+  styleUrls: ['./login.scss']
+})
+export class Login {
+  email = '';
+  password = '';
+  showModal = false;
+
+  constructor(public facade: LoginFacade) {}
+
+  onSubmit() {
+    const credentials: LoginCredentials = {
+      email: this.email,
+      password: this.password
+    };
+    this.facade.login(credentials);
+  }
+
+  openModal() {
+    this.showModal = true;
+  }
+
+  closeModal() {
+    this.showModal = false;
+  }
+}

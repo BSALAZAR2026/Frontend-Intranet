@@ -1,0 +1,57 @@
+<div class="right-column">
+  <mat-card class="section-card birthday-card">
+    <div class="card-header">
+      <mat-card-title>
+       Cumpleaños del Mes
+      </mat-card-title>
+      <div class="action-buttons">
+        <button mat-icon-button color="accent" 
+                (click)="openBirthdayListDialog()" 
+                matTooltip="Ver todos los cumpleaños">
+          <mat-icon>list</mat-icon>
+        </button>
+      </div>
+    </div>
+
+    <div class="birthday-preview">
+      @if (birthdays.length === 0) {
+        <div class="empty-state">
+          <p>No hay cumpleaños registrados</p>
+        </div>
+      } @else {
+        <div class="upcoming-section">
+          <div class="upcoming-list">
+            @for (b of getLimitedBirthdays(); track b) {
+              <div class="birthday-item">
+                <mat-icon class="birthday-icon">celebration</mat-icon>
+                <div class="birthday-details">
+                  <div class="name">{{ b.name }}</div>
+                  <div class="date">{{ formatDate(b.date) }}</div>
+                </div>
+              </div>
+            }
+          </div>
+        </div>
+      }
+    </div>
+  </mat-card>
+
+    <mat-card class="section-card directory-card">
+      <div class="card-header">
+        <mat-card-title>Directorio</mat-card-title>
+        <div class="action-buttons">
+          <button
+            mat-icon-button
+            color="accent"
+            (click)="openDirectoryDialog()"
+            matTooltip="Ver directorio de colaboradores"
+          >
+            <mat-icon>people</mat-icon>
+          </button>
+        </div>
+      </div>
+        <div class="directory-preview">
+          <p>Consulta el directorio completo de funcionarios.</p>
+        </div>
+  </mat-card>
+</div>

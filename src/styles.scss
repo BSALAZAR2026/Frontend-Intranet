@@ -1,0 +1,219 @@
+@import url('https://fonts.googleapis.com/css2?family=Oswald:wght@400;500;700&display=swap');
+
+:root {
+    /* COLORES */
+    --color-primary: #1ec6cf;
+    --color-secundary: #01adbb;
+    --color-bg: #f4f4f9;
+    --color-card: #ffffff;
+    --color-text: #333;
+
+    /* Tipografia */
+   --font-family: 'Oswald', system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+
+
+    /* Bordes y Sombras */
+    --border-radius: 12px;
+    --shadow: 0 2px 6px rgba(0, 0, 0, 0.1);
+}
+
+body {
+  height: 100vh;
+  margin: 0;
+  background-color: #f4f4f9;
+  box-sizing: border-box;
+  background: linear-gradient(
+      rgb(29, 149, 173), 
+      rgba(0, 109, 117, 0.5)
+    ),
+    url("../public/assets/images/ProScienceBackground.png") no-repeat center center / cover;
+  color: var(--color-text);
+}
+
+
+#splash-screen {
+  position: fixed;
+  top: 0; left: 0;
+  width: 100%; height: 100%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  background: white;
+  z-index: 9999;
+
+  .logo {
+    width: 120px;
+    margin-bottom: 20px;
+    animation: pulse 1.5s infinite;
+  }
+
+  p {
+    font-size: 18px;
+    color: #444;
+  }
+}#splash-screen {
+  position: fixed;
+  inset: 0;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  background: white;
+  z-index: 9999;
+  transition: opacity 0.5s ease;
+
+  .logo {
+    width: 120px;
+    margin-bottom: 20px;
+    animation: pulse 1.5s infinite;
+  }
+
+  p {
+    font-size: 18px;
+    color: #444;
+  }
+}
+
+#splash-screen.hide {
+  opacity: 0;
+  pointer-events: none;
+}
+
+@keyframes pulse {
+  0% { transform: scale(1); opacity: 0.6; }
+  50% { transform: scale(1.1); opacity: 1; }
+  100% { transform: scale(1); opacity: 0.6; }
+}
+
+html, body { height: 100%; }
+body { margin: 0; font-family: Roboto, "Helvetica Neue", sans-serif; }
+
+.cdk-overlay-container .mat-mdc-select-panel {
+  background-color: rgb(255, 255, 255) !important;
+  border-radius: 8px !important;
+}
+
+::ng-deep .cdk-overlay-container {
+  z-index: 2000 !important;
+}
+
+::ng-deep .cdk-overlay-backdrop {
+  z-index: 1999 !important;
+  background-color: rgba(0, 0, 0, 0.5) !important;
+}
+
+
+.mat-mdc-snack-bar-container.snackbar-success,
+.mat-mdc-snack-bar-container.snackbar-error {
+  background-color: #ffffff !important;
+  opacity: 1 !important;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.2) !important;
+  border-radius: 10px !important;
+  padding: 0 !important;
+}
+
+.mat-mdc-snack-bar-container .mdc-snackbar__surface {
+  background-color: #ffffff !important;
+  opacity: 1 !important;
+  box-shadow: none !important;
+}
+
+.snackbar-success .mdc-snackbar__label {
+  color: #2e7d32 !important;
+  font-weight: 600;
+  border-left: 5px solid #2e7d32;
+  padding: 12px 18px !important;
+  background-color: #ffffff !important;
+}
+
+.snackbar-error .mdc-snackbar__label {
+  color: #c62828 !important;
+  font-weight: 600;
+  border-left: 5px solid #c62828;
+  padding: 12px 18px !important;
+  background-color: #ffffff !important;
+}
+
+/* Estilos globales para títulos */
+
+h1, h2, h3, h4, h5, h6 {
+  font-family: 'Poppins', sans-serif;
+  font-weight: 700;
+  color: #2c3e50;
+  text-align: center;
+  line-height: 1.2;
+  position: relative;
+  animation: fadeIn 0.6s ease-in-out;
+  margin: 0.5rem 0 1rem;
+}
+
+h1 {
+  font-size: 2.2rem;
+}
+
+h2 {
+  font-size: 2.0rem;
+}
+
+h3 {
+  font-size: 1.6rem;
+}
+
+h4 {
+  font-size: 1.3rem;
+}
+
+h2::after,
+h3::after {
+  content: '';
+  display: block;
+  width: 80px;
+  height: 4px;
+  background-color: var(--color-secundary);
+  margin: 12px auto 0;
+  border-radius: 2px;
+  animation: slideIn 0.5s ease-out;
+}
+
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+    transform: translateY(10px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@keyframes slideIn {
+  from {
+    opacity: 0;
+    transform: translateY(-10px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@media (max-width: 768px) {
+  h1 {
+    font-size: 2rem;
+  }
+
+  h2 {
+    font-size: 1.5rem;
+  }
+
+  h3 {
+    font-size: 1.2rem;
+  }
+}
+
+
+
+
+
+

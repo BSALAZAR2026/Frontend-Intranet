@@ -1,0 +1,41 @@
+<header class="navbar-header">
+  <div class="logo-container">
+    <button class="menu-toggle" (click)="isMenuOpen = !isMenuOpen">
+      <mat-icon>menu</mat-icon>
+    </button>
+    <img src="/assets/images/MoleculaYLetra.png" alt="Logo" class="logo"/>
+  </div>
+
+  <div class="user-container" [matMenuTriggerFor]="userMenu">
+    <mat-icon>account_circle</mat-icon>
+    <span class="user-name">{{ user?.firstName }} {{ user?.lastName }}</span>
+    <mat-icon>expand_more</mat-icon>
+  </div>
+
+  <mat-menu #userMenu="matMenu" xPosition="before">
+    <button mat-menu-item disabled>
+      <mat-icon>person</mat-icon>
+      {{ user?.email }}
+    </button>
+    <button mat-menu-item disabled>
+      <mat-icon>work</mat-icon>
+      {{ user?.position }} | {{ user?.sede}}
+    </button>
+    <button mat-menu-item disabled>
+      <mat-icon>alarm</mat-icon>
+      {{ user?.loginTime | date:'shortTime' }}
+    </button>
+    <button mat-menu-item (click)="logout()">
+      <mat-icon>logout</mat-icon>
+      Cerrar sesión
+    </button>
+  </mat-menu>
+</header>
+
+<nav class="side-menu" [class.open]="isMenuOpen" (click)="isMenuOpen = false">
+  <a routerLink="/home" routerLinkActive="active">Inicio</a>
+  <a routerLink="/academy" routerLinkActive="active">Academia</a>
+  <a routerLink="/documents" routerLinkActive="active">Documentos</a>
+  <a routerLink="/requeriments" routerLinkActive="active">Requerimientos</a>
+  <a routerLink="/profile" routerLinkActive="active">Perfil</a>
+</nav>

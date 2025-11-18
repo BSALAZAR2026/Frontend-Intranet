@@ -1,0 +1,46 @@
+<div class="dialog-container">
+  <div class="dialog-header">
+    <h2><mat-icon>people</mat-icon> Directorio de funcionarios</h2>
+    <button mat-icon-button (click)="close()">
+      <mat-icon>close</mat-icon>
+    </button>
+  </div>
+
+  <mat-dialog-content>
+    <mat-form-field appearance="outline" class="search-field">
+      <mat-label>Buscar por nombre o cargo</mat-label>
+      <input
+        matInput
+        [(ngModel)]="searchText"
+        (ngModelChange)="filterEmployees()"
+        placeholder="Coordinador o Iván"
+      />
+        @switch (searchText) {
+  @case (searchText) {
+    <button matSuffix mat-icon-button (click)="clearSearch()">
+      <mat-icon>close</mat-icon>
+    </button>
+     }
+    }
+    </mat-form-field>
+
+    @if (filteredEmployees.length === 0) {
+      <div class="empty-state">
+        <mat-icon>person_off</mat-icon>
+        <p>No se encontraron coincidencias</p>
+      </div>
+    } @else {
+      <mat-list>
+        @for (emp of filteredEmployees; track emp) {
+          <mat-list-item>
+            <div matLine><strong>{{ emp.fullName }}</strong></div>
+            <div matLine class="secondary">{{ emp.position }}</div>
+            <div matLine class="secondary">{{ emp.sede }}</div>
+            <div matLine class="secondary">{{ emp.email }}</div>
+        </mat-list-item>
+          <mat-divider></mat-divider>
+        }
+      </mat-list>
+    }
+  </mat-dialog-content>
+</div>
