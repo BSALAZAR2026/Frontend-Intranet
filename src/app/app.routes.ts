@@ -11,7 +11,6 @@ export const routes: Routes = [
       import('./layouts/auth-layout/auth.routes').then(m => m.AUTH_ROUTES)
   },
 
-  
   {
     path: '',
     component: MainLayoutComponent,
@@ -19,27 +18,32 @@ export const routes: Routes = [
       {
         path: 'home',
         loadComponent: () =>
-          import('./pages/home/home').then((m) => m.HomeComponent)
+          import('./pages/home/home').then((m) => m.HomeComponent),
+        data: { prerender: false }
       },
       {
         path: 'profile',
         loadComponent: () =>
-          import('./pages/profile/profile').then((m) => m.ProfilePageComponent)
+          import('./pages/profile/profile').then((m) => m.ProfilePageComponent),
+        data: { prerender: false }
       },
       {
         path: 'academy',
         loadComponent: () =>
-          import('./pages/academy/academy').then((m) => m.AcademyComponent)
+          import('./pages/academy/academy').then((m) => m.AcademyComponent),
+        data: { prerender: false }
       },
       {
         path: 'documents',
         loadComponent: () =>
-          import('./pages/documents/documents').then((m) => m.DocumentsComponent)
+          import('./pages/documents/documents').then((m) => m.DocumentsComponent),
+        data: { prerender: false }
       },
       {
         path: 'requeriments',
         loadComponent: () =>
-          import('./pages/requeriments/requeriments').then((m) => m.RequerimentsComponent)
+          import('./pages/requeriments/requeriments').then((m) => m.RequerimentsComponent),
+        data: { prerender: false }
       },
     ]
   },
