@@ -6,5 +6,5 @@ export const API_ENDPOINTS = {
   auth: `${API_BASE_URL}/api/auth`,
   users: `${API_BASE_URL}/api/users`,
   documents: `${API_BASE_URL}/api/documents`,
-  birthdays: `${API_BASE_URL}/api/users/birthdays`
+  birthdays: `${API_BASE_URL}/birthdays`
 };
