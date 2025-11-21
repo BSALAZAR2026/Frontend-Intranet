@@ -50,16 +50,10 @@ export class NavbarComponent implements OnInit {
  @HostListener('document:click', ['$event'])
 closeMenuOnOutsideClick(event: Event) {
   const target = event.target as HTMLElement;
-
-  if (target.closest('.menu-toggle')) return;
-
-  if (target.closest('.side-menu')) return;
-
-  if (target.closest('.user-container')) return;
-  if (target.closest('.mat-mdc-menu-panel')) return;
-
+  if (target.closest('.menu-toggle') || target.closest('.side-menu')) return;
   this.isMenuOpen = false;
 }
+
 
   logout(): void {
     this.sessionService.clearSession();
