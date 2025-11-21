@@ -92,6 +92,12 @@
   transition: transform 0.3s ease-in-out;
 }
 
+@media (min-width: 1025px) {
+  .side-menu {
+    transform: none;
+  }
+}
+
 /* Tablet y móvil: oculto por defecto, se muestra con clase .open */
 @media (max-width: 1024px) {
   .side-menu {
