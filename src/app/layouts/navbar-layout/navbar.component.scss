@@ -98,7 +98,6 @@
   }
 }
 
-/* Tablet y móvil: oculto por defecto, se muestra con clase .open */
 @media (max-width: 1024px) {
   .side-menu {
     transform: translateX(-100%);
