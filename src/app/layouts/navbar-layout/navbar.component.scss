@@ -128,14 +128,6 @@
   .menu-toggle {
     display: block;
   }
-
-  .side-menu {
-    transform: translateX(-100%);
-  }
-
-  .side-menu.open {
-    transform: translateX(0);
-  }
 }
 
 /* Small tablets / screens <768px */
