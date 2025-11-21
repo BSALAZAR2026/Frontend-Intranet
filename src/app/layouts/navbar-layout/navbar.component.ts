@@ -59,13 +59,20 @@ export class NavbarComponent implements OnInit {
     event?.stopPropagation();
   }
 
-  @HostListener('document:click')
-  closeMenuOnOutsideClick() {
-    if (this.isMenuOpen) {
-      this.isMenuOpen = false;
-    }
-  }
+  @HostListener('document:click', ['$event'])
+closeMenuOnOutsideClick(event: Event) {
 
+  const clickedElement = event.target as HTMLElement;
+  if (clickedElement.closest('.menu-toggle')) {
+    return;
+  }
+  if (clickedElement.closest('.side-menu')) {
+    return;
+  }
+  if (this.isMenuOpen) {
+    this.isMenuOpen = false;
+  }
+}
   logout(): void {
     this.sessionService.clearSession();
     this.router.navigate(['/login']);
