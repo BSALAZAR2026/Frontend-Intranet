@@ -92,13 +92,6 @@
   transition: transform 0.3s ease-in-out;
 }
 
-/* Desktop: siempre visible */
-@media (min-width: 1025px) {
-  .side-menu {
-    transform: translateX(0) !important;
-  }
-}
-
 /* Tablet y móvil: oculto por defecto, se muestra con clase .open */
 @media (max-width: 1024px) {
   .side-menu {
