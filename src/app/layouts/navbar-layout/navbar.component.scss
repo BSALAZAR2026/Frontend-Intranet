@@ -59,7 +59,7 @@
 }
 
 /* ========================
-   SIDE MENU
+   SIDE MENU (base)
 ======================== */
 .side-menu {
   position: fixed;
@@ -77,7 +77,35 @@
   overflow-y: auto;
   cursor: pointer;
   transition: transform 0.3s ease-in-out;
+
+
+  transform: translateX(-100%);
 }
+
+
+.side-menu.open {
+  transform: translateX(0);
+}
+
+
+@media (min-width: 1025px) {
+  .side-menu {
+    transform: none !important;
+  }
+}
+
+@media (max-width: 1024px) {
+  .menu-toggle {
+    display: block;
+  }
+}
+
+@media (max-width: 600px) {
+  .side-menu {
+    top: 60px;
+  }
+}
+
 
 .side-menu a {
   color: var(--color-primary);
