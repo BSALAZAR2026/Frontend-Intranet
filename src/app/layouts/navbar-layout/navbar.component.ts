@@ -1,4 +1,4 @@
-import { Component, OnInit, Inject, PLATFORM_ID } from '@angular/core';
+import { Component, OnInit, Inject, PLATFORM_ID, HostListener } from '@angular/core';
 import { CommonModule, isPlatformBrowser } from '@angular/common';
 import { MatIconModule } from '@angular/material/icon';
 import { MatMenuModule } from '@angular/material/menu';
@@ -16,6 +16,7 @@ import { LoginInfo } from '../../core/models/login-info.models';
   imports: [CommonModule, MatIconModule, MatMenuModule, MatButtonModule, RouterModule]
 })
 export class NavbarComponent implements OnInit {
+
   user: LoginInfo | null = null;
   isMenuOpen: boolean = false;
 
@@ -45,14 +46,25 @@ export class NavbarComponent implements OnInit {
     }
   }
 
-   profile() {
+  profile() {
     this.router.navigate(['/profile']);
   }
 
-toggleMenu(event: Event) {
-  event.stopPropagation();
-  this.isMenuOpen = !this.isMenuOpen;
-}
+  toggleMenu(event: Event) {
+    event.stopPropagation();
+    this.isMenuOpen = !this.isMenuOpen;
+  }
+
+  stopPropagation(event?: Event) {
+    event?.stopPropagation();
+  }
+
+  @HostListener('document:click')
+  closeMenuOnOutsideClick() {
+    if (this.isMenuOpen) {
+      this.isMenuOpen = false;
+    }
+  }
 
   logout(): void {
     this.sessionService.clearSession();
