@@ -22,6 +22,7 @@
 .logo-container {
   display: flex;
   align-items: center;
+  gap: 0.5rem;
 }
 
 .logo {
@@ -58,6 +59,19 @@
   text-overflow: ellipsis;
 }
 
+/* MENU TOGGLE - Oculto por defecto en desktop */
+.menu-toggle {
+  background: transparent;
+  border: none;
+  color: white;
+  cursor: pointer;
+  font-size: 1.8rem;
+  display: none;
+  padding: 0.3rem;
+  align-items: center;
+  justify-content: center;
+}
+
 /* ========================
    SIDE MENU (base)
 ======================== */
@@ -75,38 +89,30 @@
   box-shadow: 2px 0 5px rgba(0, 0, 0, 0.1);
   z-index: 1000;
   overflow-y: auto;
-  cursor: pointer;
   transition: transform 0.3s ease-in-out;
-
-
-  transform: translateX(-100%);
 }
 
-
-.side-menu.open {
-  transform: translateX(0);
-}
-
-
+/* Desktop: siempre visible */
 @media (min-width: 1025px) {
   .side-menu {
-    transform: none !important;
+    transform: translateX(0) !important;
   }
 }
 
+/* Tablet y móvil: oculto por defecto, se muestra con clase .open */
 @media (max-width: 1024px) {
-  .menu-toggle {
-    display: block;
-  }
-}
-
-/* Mobile phones <600px */
-@media (max-width: 600px) {
   .side-menu {
-    top: 60px;
+    transform: translateX(-100%);
+  }
+  
+  .side-menu.open {
+    transform: translateX(0);
+  }
+  
+  .menu-toggle {
+    display: flex !important;
   }
 }
-
 
 .side-menu a {
   color: var(--color-primary);
@@ -121,17 +127,6 @@
   background-color: var(--color-secundary);
   color: #fff;
   font-weight: 600;
-}
-
-/* MENU TOGGLE (hidden on desktop) */
-.menu-toggle {
-  background: transparent;
-  border: none;
-  color: white;
-  cursor: pointer;
-  font-size: 1.8rem;
-  display: none;
-  padding: 0.3rem;
 }
 
 /* ========================
@@ -151,13 +146,6 @@
 /* ========================
    MEDIA QUERIES
 ======================== */
-
-/* Tablets / screens <1024px */
-@media (max-width: 1024px) {
-  .menu-toggle {
-    display: block;
-  }
-}
 
 /* Small tablets / screens <768px */
 @media (max-width: 768px) {
@@ -190,7 +178,6 @@
 
 /* Mobile phones / screens <600px */
 @media (max-width: 600px) {
-
   .navbar-header {
     height: 60px;
     padding: 0 0.8rem;
@@ -204,9 +191,7 @@
   }
 
   .menu-toggle {
-    display: flex;
-    align-items: center;
-    justify-content: center;
+    display: flex !important;
     font-size: 1.7rem;
     margin-right: 0.4rem;
   }
