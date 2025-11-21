@@ -1,3 +1,6 @@
+/* ========================
+   NAVBAR
+======================== */
 .navbar-header {
   position: fixed;
   top: 0;
@@ -15,6 +18,7 @@
   flex-wrap: wrap;
 }
 
+/* LOGO */
 .logo-container {
   display: flex;
   align-items: center;
@@ -25,6 +29,7 @@
   width: auto;
 }
 
+/* USER INFO */
 .user-container {
   display: flex;
   align-items: center;
@@ -53,7 +58,9 @@
   text-overflow: ellipsis;
 }
 
-/* SIDE MENU */
+/* ========================
+   SIDE MENU (base)
+======================== */
 .side-menu {
   position: fixed;
   top: 70px;
@@ -68,13 +75,38 @@
   box-shadow: 2px 0 5px rgba(0, 0, 0, 0.1);
   z-index: 1000;
   overflow-y: auto;
+  cursor: pointer;
   transition: transform 0.3s ease-in-out;
+
+
   transform: translateX(-100%);
 }
+
 
 .side-menu.open {
   transform: translateX(0);
 }
+
+
+@media (min-width: 1025px) {
+  .side-menu {
+    transform: none !important;
+  }
+}
+
+@media (max-width: 1024px) {
+  .menu-toggle {
+    display: block;
+  }
+}
+
+/* Mobile phones <600px */
+@media (max-width: 600px) {
+  .side-menu {
+    top: 60px;
+  }
+}
+
 
 .side-menu a {
   color: var(--color-primary);
@@ -91,7 +123,7 @@
   font-weight: 600;
 }
 
-/* HAMBURGER BUTTON */
+/* MENU TOGGLE (hidden on desktop) */
 .menu-toggle {
   background: transparent;
   border: none;
@@ -102,21 +134,32 @@
   padding: 0.3rem;
 }
 
-/* DESKTOP ALWAYS SHOWS MENU */
-@media (min-width: 1025px) {
-  .side-menu {
-    transform: none !important;
-  }
+/* ========================
+   ANGULAR MATERIAL MENU
+======================== */
+::ng-deep .mat-mdc-menu-panel {
+  background-color: #ffffff !important;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15) !important;
+  border-radius: 10px !important;
+  overflow: hidden !important;
 }
 
-/* TABLET */
+::ng-deep .mat-mdc-menu-content {
+  background-color: #ffffff !important;
+}
+
+/* ========================
+   MEDIA QUERIES
+======================== */
+
+/* Tablets / screens <1024px */
 @media (max-width: 1024px) {
   .menu-toggle {
     display: block;
   }
 }
 
-/* MOBILE <768px */
+/* Small tablets / screens <768px */
 @media (max-width: 768px) {
   .navbar-header {
     flex-direction: column;
@@ -145,8 +188,9 @@
   }
 }
 
-/* MOBILE <600px */
+/* Mobile phones / screens <600px */
 @media (max-width: 600px) {
+
   .navbar-header {
     height: 60px;
     padding: 0 0.8rem;
