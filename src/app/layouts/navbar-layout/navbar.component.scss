@@ -29,7 +29,9 @@
   width: auto;
 }
 
-/* USER INFO */
+/* ========================
+   USER INFO
+======================== */
 .user-container {
   display: flex;
   align-items: center;
@@ -75,21 +77,21 @@
   box-shadow: 2px 0 5px rgba(0, 0, 0, 0.1);
   z-index: 1000;
   overflow-y: auto;
-}
 
-.side-menu a {
-  color: var(--color-primary);
-  text-decoration: none;
-  padding: 1rem 1.5rem;
-  font-size: 1rem;
-  transition: background 0.3s ease, color 0.3s ease;
-}
+  a {
+    color: var(--color-primary);
+    text-decoration: none;
+    padding: 1rem 1.5rem;
+    font-size: 1rem;
+    transition: background 0.3s ease, color 0.3s ease;
 
-.side-menu a:hover,
-.side-menu a.active {
-  background-color: var(--color-secundary);
-  color: #fff;
-  font-weight: 600;
+    &:hover,
+    &.active {
+      background-color: var(--color-secundary);
+      color: #fff;
+      font-weight: 600;
+    }
+  }
 }
 
 /* MENU TOGGLE */
@@ -121,7 +123,7 @@
    MEDIA QUERIES
 ======================== */
 
-/* Tablets / screens <1024px */
+/* Tablets <1024px */
 @media (max-width: 1024px) {
   .menu-toggle {
     display: block;
@@ -129,14 +131,13 @@
 
   .side-menu {
     transform: translateX(-100%);
-  }
-
-  .side-menu.open {
-    transform: translateX(0);
+    &.open {
+      transform: translateX(0);
+    }
   }
 }
 
-/* Small tablets / screens <768px */
+/* Small tablets <768px */
 @media (max-width: 768px) {
   .navbar-header {
     flex-direction: column;
@@ -170,35 +171,24 @@
   .navbar-header {
     height: 60px;
     padding: 0 0.8rem;
-    display: flex;
     flex-direction: row;
     justify-content: space-between;
     align-items: center;
     gap: 1rem;
-    overflow: hidden;
     flex-wrap: nowrap;
-  }
-
-  .logo-container {
-    display: flex;
-    align-items: center;
-  }
-
-  .menu-toggle {
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    font-size: 1.7rem;
-    margin-right: 0.4rem;
   }
 
   .logo {
     height: 42px;
   }
 
-  .user-container {
+  .menu-toggle {
     display: flex;
-    align-items: center;
+    font-size: 1.7rem;
+    margin-right: 0.4rem;
+  }
+
+  .user-container {
     gap: 0.3rem;
     min-width: 0;
     max-width: 150px;
@@ -207,9 +197,6 @@
   }
 
   .user-name {
-    white-space: nowrap;
-    overflow: hidden;
-    text-overflow: ellipsis;
     font-size: 0.85rem;
     min-width: 0;
   }
