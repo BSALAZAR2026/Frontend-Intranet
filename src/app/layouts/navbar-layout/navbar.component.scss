@@ -70,14 +70,11 @@
   align-items: center;
   justify-content: center;
   outline: none;
-}
-
-.menu-toggle:focus {
-  outline: none;
+  z-index: 1101;
 }
 
 /* ========================
-   SIDE MENU (base)
+   SIDE MENU
 ======================== */
 .side-menu {
   position: fixed;
@@ -94,7 +91,6 @@
   z-index: 1000;
   overflow-y: auto;
   transition: transform 0.3s ease-in-out;
-  transform: translateX(0);
 }
 
 .side-menu a {
@@ -114,44 +110,45 @@
 }
 
 /* ========================
-   RESPONSIVE BEHAVIOR
+   DESKTOP (≥1025px)
 ======================== */
-
-/* Desktop: menú siempre visible, botón oculto */
 @media (min-width: 1025px) {
   .side-menu {
-    transform: translateX(0) !important;
+    transform: translateX(0);
   }
   
   .menu-toggle {
-    display: none !important;
+    display: none;
   }
 }
 
-/* Tablet y móvil: menú oculto por defecto */
+/* ========================
+   TABLET Y MÓVIL (≤1024px)
+======================== */
 @media (max-width: 1024px) {
+  /* Mostrar botón hamburguesa */
   .menu-toggle {
-    display: flex !important;
+    display: flex;
   }
   
+  /* Menú oculto por defecto */
   .side-menu {
     transform: translateX(-100%);
   }
   
+  /* Menú visible cuando tiene clase .open */
   .side-menu.open {
     transform: translateX(0);
   }
 }
 
-/* Small tablets */
+/* ========================
+   TABLET (≤768px)
+======================== */
 @media (max-width: 768px) {
   .navbar-header {
     height: 70px;
     padding: 0 1rem;
-  }
-
-  .logo-container {
-    gap: 0.5rem;
   }
 
   .user-container {
@@ -166,7 +163,9 @@
   }
 }
 
-/* Mobile phones */
+/* ========================
+   MÓVIL (≤600px)
+======================== */
 @media (max-width: 600px) {
   .navbar-header {
     height: 60px;
@@ -176,7 +175,6 @@
 
   .menu-toggle {
     font-size: 1.7rem;
-    margin-right: 0;
     padding: 0.2rem;
   }
 
@@ -187,21 +185,18 @@
   .user-container {
     gap: 0.3rem;
     max-width: 140px;
-    margin-right: 0;
   }
 
   .user-name {
     font-size: 0.85rem;
     max-width: 100px;
   }
-
+  
   .side-menu {
     top: 60px;
-    width: 240px;
   }
 }
 
-/* Muy pequeños */
 @media (max-width: 400px) {
   .user-name {
     display: none;
