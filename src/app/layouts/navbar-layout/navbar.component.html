@@ -32,7 +32,7 @@
   </mat-menu>
 </header>
 
-<nav class="side-menu" [class.open]="isMenuOpen" (click)="isMenuOpen = false">
+<nav class="side-menu" [class.open]="isMenuOpen" (click)="$event.stopPropagation()">
   <a routerLink="/home" routerLinkActive="active">Inicio</a>
   <a routerLink="/academy" routerLinkActive="active">Academia</a>
   <a routerLink="/documents" routerLinkActive="active">Documentos</a>
