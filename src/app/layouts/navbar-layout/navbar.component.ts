@@ -31,16 +31,8 @@ export class NavbarComponent implements OnInit {
     if (isPlatformBrowser(this.platformId)) {
       this.userService.getCurrentUser().subscribe({
         next: (data) => {
-          this.user = {
-            ...data,
-            loginTime: new Date()
-          };
+          this.user = { ...data, loginTime: new Date() };
           this.sessionService.setLoginInfo(this.user);
-        },
-        error: (err) => {
-          if (err.status !== 403) {
-            console.error('Error al obtener usuario:', err);
-          }
         }
       });
     }
@@ -55,8 +47,14 @@ export class NavbarComponent implements OnInit {
     this.isMenuOpen = !this.isMenuOpen;
   }
 
-  stopPropagation(event: Event) {
-    event?.stopPropagation();
+  @HostListener('document:click', ['$event'])
+  closeMenuOnOutsideClick(event: Event) {
+    const target = event.target as HTMLElement;
+
+    if (target.closest('.menu-toggle')) return;
+    if (target.closest('.side-menu')) return;
+
+    this.isMenuOpen = false;
   }
 
   logout(): void {

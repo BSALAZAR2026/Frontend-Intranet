@@ -1,6 +1,6 @@
 <header class="navbar-header">
   <div class="logo-container">
-   <button class="menu-toggle" (click)="toggleMenu($event)">
+    <button class="menu-toggle" (click)="toggleMenu($event)">
       <mat-icon>menu</mat-icon>
     </button>
     <img src="/assets/images/MoleculaYLetra.png" alt="Logo" class="logo"/>
@@ -19,7 +19,7 @@
     </button>
     <button mat-menu-item disabled>
       <mat-icon>work</mat-icon>
-      {{ user?.position }} | {{ user?.sede}}
+      {{ user?.position }} | {{ user?.sede }}
     </button>
     <button mat-menu-item disabled>
       <mat-icon>alarm</mat-icon>
@@ -32,9 +32,7 @@
   </mat-menu>
 </header>
 
-<nav class="side-menu" 
-     [class.open]="isMenuOpen"
-     (click)="stopPropagation($event)">
+<nav class="side-menu" [class.open]="isMenuOpen">
   <a routerLink="/home" routerLinkActive="active">Inicio</a>
   <a routerLink="/academy" routerLinkActive="active">Academia</a>
   <a routerLink="/documents" routerLinkActive="active">Documentos</a>
