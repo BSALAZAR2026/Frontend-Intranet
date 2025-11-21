@@ -44,25 +44,17 @@ export class NavbarComponent implements OnInit {
 
   toggleMenu(event: Event) {
     event.stopPropagation();
-    event.preventDefault();
     this.isMenuOpen = !this.isMenuOpen;
-    console.log('Menu toggled:', this.isMenuOpen); // Debug
   }
 
   @HostListener('document:click', ['$event'])
   closeMenuOnOutsideClick(event: Event) {
     const target = event.target as HTMLElement;
 
-    // No cerrar si se hace clic en el botón toggle o en el menú
-    if (target.closest('.menu-toggle') || target.closest('.side-menu')) {
-      return;
-    }
+    if (target.closest('.menu-toggle')) return;
+    if (target.closest('.side-menu')) return;
 
-    // Solo cerrar si el menú está abierto
-    if (this.isMenuOpen) {
-      this.isMenuOpen = false;
-      console.log('Menu closed by outside click'); // Debug
-    }
+    this.isMenuOpen = false;
   }
 
   logout(): void {
