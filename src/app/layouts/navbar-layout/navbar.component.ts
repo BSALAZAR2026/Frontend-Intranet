@@ -49,15 +49,9 @@ export class NavbarComponent implements OnInit {
     this.router.navigate(['/profile']);
   }
 
-  openUserMenu(event: Event) {
-  event.stopPropagation();
-}
-
-
- toggleMenu(event: Event) {
-  event.stopPropagation();
-  this.isMenuOpen = !this.isMenuOpen;
-}
+ toggleMenu() {
+    this.isMenuOpen = !this.isMenuOpen;
+  }
 
   logout(): void {
     this.sessionService.clearSession();

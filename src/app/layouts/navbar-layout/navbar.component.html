@@ -1,6 +1,6 @@
 <header class="navbar-header">
   <div class="logo-container">
-    <button class="menu-toggle" (click)="toggleMenu($event)">
+    <button class="menu-toggle" (click)="isMenuOpen = !isMenuOpen">
       <mat-icon>menu</mat-icon>
     </button>
     <img src="/assets/images/MoleculaYLetra.png" alt="Logo" class="logo"/>
@@ -19,7 +19,7 @@
     </button>
     <button mat-menu-item disabled>
       <mat-icon>work</mat-icon>
-      {{ user?.position }} | {{ user?.sede }}
+      {{ user?.position }} | {{ user?.sede}}
     </button>
     <button mat-menu-item disabled>
       <mat-icon>alarm</mat-icon>
