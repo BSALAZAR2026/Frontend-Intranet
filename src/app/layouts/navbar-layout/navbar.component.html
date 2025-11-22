@@ -32,9 +32,14 @@
   </mat-menu>
 </header>
 
-<div class="menu-overlay" [class.show]="isMenuOpen" (click)="closeMenu()"></div>
+<!-- Overlay para cerrar el menú al hacer clic fuera -->
+<div class="menu-overlay" 
+     [class.show]="isMenuOpen" 
+     (click)="onOverlayClick($event)"></div>
 
-<nav class="side-menu" [class.open]="isMenuOpen">
+<nav class="side-menu" 
+     [class.open]="isMenuOpen"
+     (click)="$event.stopPropagation()">
   <a routerLink="/home" routerLinkActive="active" (click)="closeMenu()">Inicio</a>
   <a routerLink="/academy" routerLinkActive="active" (click)="closeMenu()">Academia</a>
   <a routerLink="/documents" routerLinkActive="active" (click)="closeMenu()">Documentos</a>
