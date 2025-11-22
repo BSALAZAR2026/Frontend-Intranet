@@ -19,6 +19,7 @@ export class NavbarComponent implements OnInit {
 
   user: LoginInfo | null = null;
   isMenuOpen: boolean = false;
+  private clickTimeout: any;
 
   constructor(
     private userService: UserService,
@@ -47,8 +48,16 @@ export class NavbarComponent implements OnInit {
     event.stopPropagation();
     event.stopImmediatePropagation();
     
-    this.isMenuOpen = !this.isMenuOpen;
-    console.log('Menu toggled:', this.isMenuOpen);
+    // Limpiar cualquier timeout pendiente
+    if (this.clickTimeout) {
+      clearTimeout(this.clickTimeout);
+    }
+    
+    // Usar un pequeño delay para prevenir clicks duplicados
+    this.clickTimeout = setTimeout(() => {
+      this.isMenuOpen = !this.isMenuOpen;
+      console.log('Menu toggled:', this.isMenuOpen);
+    }, 10);
   }
 
   closeMenu(event?: MouseEvent) {
