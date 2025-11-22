@@ -1,12 +1,14 @@
 <header class="navbar-header">
   <div class="logo-container">
     <button class="menu-toggle" (click)="toggleMenu($event)" type="button">
-      <mat-icon style="pointer-events: none;">menu</mat-icon>
+      <mat-icon>menu</mat-icon>
     </button>
     <img src="/assets/images/MoleculaYLetra.png" alt="Logo" class="logo"/>
   </div>
 
-  <div class="user-container" [matMenuTriggerFor]="userMenu">
+  <div class="user-container" 
+       [matMenuTriggerFor]="userMenu"
+       (click)="onUserMenuClick($event)">
     <mat-icon>account_circle</mat-icon>
     <span class="user-name">{{ user?.firstName }} {{ user?.lastName }}</span>
     <mat-icon>expand_more</mat-icon>
@@ -38,7 +40,7 @@
      (click)="closeMenu($event)"></div>
 
 <!-- Side Menu -->
-<nav class="side-menu" [class.open]="isMenuOpen">
+<nav class="side-menu">
   <a routerLink="/home" routerLinkActive="active" (click)="closeMenu()">Inicio</a>
   <a routerLink="/academy" routerLinkActive="active" (click)="closeMenu()">Academia</a>
   <a routerLink="/documents" routerLinkActive="active" (click)="closeMenu()">Documentos</a>

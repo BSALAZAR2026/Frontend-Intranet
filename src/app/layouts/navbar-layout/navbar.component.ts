@@ -1,4 +1,4 @@
-import { Component, OnInit, Inject, PLATFORM_ID } from '@angular/core';
+import { Component, OnInit, Inject, PLATFORM_ID, ChangeDetectorRef } from '@angular/core';
 import { CommonModule, isPlatformBrowser } from '@angular/common';
 import { MatIconModule } from '@angular/material/icon';
 import { MatMenuModule } from '@angular/material/menu';
@@ -19,12 +19,12 @@ export class NavbarComponent implements OnInit {
 
   user: LoginInfo | null = null;
   isMenuOpen: boolean = false;
-  private clickTimeout: any;
 
   constructor(
     private userService: UserService,
     private sessionService: SessionService,
     private router: Router,
+    private cdr: ChangeDetectorRef,
     @Inject(PLATFORM_ID) private platformId: Object
   ) {}
 
@@ -48,16 +48,20 @@ export class NavbarComponent implements OnInit {
     event.stopPropagation();
     event.stopImmediatePropagation();
     
-    // Limpiar cualquier timeout pendiente
-    if (this.clickTimeout) {
-      clearTimeout(this.clickTimeout);
+    this.isMenuOpen = !this.isMenuOpen;
+    
+    this.cdr.detectChanges();
+    
+    const menuElement = document.querySelector('.side-menu');
+    if (menuElement) {
+      if (this.isMenuOpen) {
+        menuElement.classList.add('open');
+      } else {
+        menuElement.classList.remove('open');
+      }
     }
     
-    // Usar un pequeño delay para prevenir clicks duplicados
-    this.clickTimeout = setTimeout(() => {
-      this.isMenuOpen = !this.isMenuOpen;
-      console.log('Menu toggled:', this.isMenuOpen);
-    }, 10);
+    console.log('Menu toggled:', this.isMenuOpen);
   }
 
   closeMenu(event?: MouseEvent) {
@@ -65,8 +69,20 @@ export class NavbarComponent implements OnInit {
       event.preventDefault();
       event.stopPropagation();
     }
-    console.log('Menu closed');
+    
     this.isMenuOpen = false;
+    
+    const menuElement = document.querySelector('.side-menu');
+    if (menuElement) {
+      menuElement.classList.remove('open');
+    }
+    
+    this.cdr.detectChanges();
+    console.log('Menu closed');
+  }
+
+  onUserMenuClick(event: MouseEvent) {
+    event.stopPropagation();
   }
 
   logout(): void {
