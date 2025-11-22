@@ -94,12 +94,13 @@
   z-index: 1050;
   overflow-y: auto;
   transition: transform 0.3s ease-in-out;
+  will-change: transform;
 }
 
 /* Desktop: Menu siempre visible */
 @media (min-width: 1025px) {
   .side-menu {
-    transform: translateX(0);
+    transform: translateX(0) !important;
   }
   
   .menu-toggle {
@@ -110,7 +111,7 @@
 /* Tablets y móviles: Menu oculto por defecto, se muestra con .open */
 @media (max-width: 1024px) {
   .side-menu {
-    transform: translateX(-100%);
+    transform: translateX(-100%) !important;
   }
   
   .side-menu.open {
