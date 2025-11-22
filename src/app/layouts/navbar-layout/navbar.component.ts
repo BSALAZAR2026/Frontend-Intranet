@@ -1,4 +1,4 @@
-import { Component, OnInit, Inject, PLATFORM_ID, HostListener } from '@angular/core';
+import { Component, OnInit, Inject, PLATFORM_ID } from '@angular/core';
 import { CommonModule, isPlatformBrowser } from '@angular/common';
 import { MatIconModule } from '@angular/material/icon';
 import { MatMenuModule } from '@angular/material/menu';
@@ -45,15 +45,12 @@ export class NavbarComponent implements OnInit {
   toggleMenu(event: Event) {
     event.stopPropagation();
     this.isMenuOpen = !this.isMenuOpen;
+    console.log('Menu toggled:', this.isMenuOpen);
   }
 
- @HostListener('document:click', ['$event'])
-closeMenuOnOutsideClick(event: Event) {
-  const target = event.target as HTMLElement;
-  if (target.closest('.menu-toggle') || target.closest('.side-menu')) return;
-  this.isMenuOpen = false;
-}
-
+  closeMenu() {
+    this.isMenuOpen = false;
+  }
 
   logout(): void {
     this.sessionService.clearSession();

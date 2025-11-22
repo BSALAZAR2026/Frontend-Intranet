@@ -32,10 +32,12 @@
   </mat-menu>
 </header>
 
+<div class="menu-overlay" [class.show]="isMenuOpen" (click)="closeMenu()"></div>
+
 <nav class="side-menu" [class.open]="isMenuOpen">
-  <a routerLink="/home" routerLinkActive="active">Inicio</a>
-  <a routerLink="/academy" routerLinkActive="active">Academia</a>
-  <a routerLink="/documents" routerLinkActive="active">Documentos</a>
-  <a routerLink="/requeriments" routerLinkActive="active">Requerimientos</a>
-  <a routerLink="/profile" routerLinkActive="active">Perfil</a>
+  <a routerLink="/home" routerLinkActive="active" (click)="closeMenu()">Inicio</a>
+  <a routerLink="/academy" routerLinkActive="active" (click)="closeMenu()">Academia</a>
+  <a routerLink="/documents" routerLinkActive="active" (click)="closeMenu()">Documentos</a>
+  <a routerLink="/requeriments" routerLinkActive="active" (click)="closeMenu()">Requerimientos</a>
+  <a routerLink="/profile" routerLinkActive="active" (click)="closeMenu()">Perfil</a>
 </nav>

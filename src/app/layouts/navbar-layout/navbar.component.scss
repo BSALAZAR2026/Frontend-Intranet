@@ -110,7 +110,7 @@
   }
   
   .side-menu.open {
-    transform: translateX(0);
+    transform: translateX(0) !important;
   }
   
   .menu-toggle {
@@ -225,15 +225,26 @@
   }
 }
 
+/* Overlay para cerrar el menu al hacer click fuera */
+.menu-overlay {
+  display: none;
+  position: fixed;
+  top: 70px;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background-color: rgba(0, 0, 0, 0.5);
+  z-index: 999;
+}
+
 @media (max-width: 1024px) {
-  .side-menu.open::before {
-    content: '';
-    position: fixed;
-    top: 0;
-    left: 0;
-    right: 0;
-    bottom: 0;
-    background-color: rgba(0, 0, 0, 0.5);
-    z-index: -1;
+  .menu-overlay.show {
+    display: block;
+  }
+}
+
+@media (max-width: 600px) {
+  .menu-overlay {
+    top: 60px;
   }
 }
