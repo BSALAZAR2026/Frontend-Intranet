@@ -42,19 +42,22 @@ export class NavbarComponent implements OnInit {
     this.router.navigate(['/profile']);
   }
 
-  toggleMenu(event: Event) {
+  toggleMenu(event: MouseEvent) {
+    event.preventDefault();
     event.stopPropagation();
+    event.stopImmediatePropagation();
+    
     this.isMenuOpen = !this.isMenuOpen;
     console.log('Menu toggled:', this.isMenuOpen);
   }
 
-  closeMenu() {
+  closeMenu(event?: MouseEvent) {
+    if (event) {
+      event.preventDefault();
+      event.stopPropagation();
+    }
+    console.log('Menu closed');
     this.isMenuOpen = false;
-  }
-
-  onOverlayClick(event: Event) {
-    event.stopPropagation();
-    this.closeMenu();
   }
 
   logout(): void {

@@ -32,14 +32,13 @@
   </mat-menu>
 </header>
 
-<!-- Overlay para cerrar el menú al hacer clic fuera -->
+<!-- Overlay -->
 <div class="menu-overlay" 
-     [class.show]="isMenuOpen" 
-     (click)="onOverlayClick($event)"></div>
+     *ngIf="isMenuOpen"
+     (click)="closeMenu($event)"></div>
 
-<nav class="side-menu" 
-     [class.open]="isMenuOpen"
-     (click)="$event.stopPropagation()">
+<!-- Side Menu -->
+<nav class="side-menu" [class.open]="isMenuOpen">
   <a routerLink="/home" routerLinkActive="active" (click)="closeMenu()">Inicio</a>
   <a routerLink="/academy" routerLinkActive="active" (click)="closeMenu()">Academia</a>
   <a routerLink="/documents" routerLinkActive="active" (click)="closeMenu()">Documentos</a>
