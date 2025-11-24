@@ -14,7 +14,9 @@ export class SessionService {
   setLoginInfo(info: LoginInfo) {
     if (isPlatformBrowser(this.platformId)) {
       localStorage.setItem('loginInfo', JSON.stringify(info));
-      localStorage.setItem('token', info.token);
+      if(info.token){
+        localStorage.setItem('token', info.token);
+      }
     }
     this.loginInfoSubject.next(info);
   }
