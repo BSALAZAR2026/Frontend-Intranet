@@ -1,24 +1,17 @@
-import { inject, PLATFORM_ID } from '@angular/core';
 import { HttpInterceptorFn } from '@angular/common/http';
-import { isPlatformBrowser } from '@angular/common';
+import { inject } from '@angular/core';
+import { SessionService } from '../services/session.service';
 
 export const authInterceptor: HttpInterceptorFn = (req, next) => {
-  const platformId = inject(PLATFORM_ID);
-  let token: string | null = null;
-
-  if (isPlatformBrowser(platformId)) {
-    token = localStorage.getItem('token');
-  }
+  const session = inject(SessionService);
+  const token = session.getToken();
 
   if (token) {
-    const cloned = req.clone({
+    req = req.clone({
       setHeaders: {
-        Authorization: `Bearer ${token}`,
-      },
+        Authorization: `Bearer ${token}`
+      }
     });
-    return next(cloned);
-  } else {
-    console.warn('No se encontró token en localStorage');
   }
 
   return next(req);
