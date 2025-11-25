@@ -8,7 +8,7 @@ import { Component, inject } from "@angular/core";
   imports: [CommonModule],
   template: `
     <div id="splash-screen" [class.hide]="!isLoading()">
-      <img src="/assets/images/ProScienceLogo.png" class="logo" />
+      <img src="assets/images/Logo.png" class="logo" />
       <p>Cargando...</p>
     </div>
   `
