@@ -32,10 +32,6 @@ import { MatSnackBar } from '@angular/material/snack-bar';
         </mat-tab-group>
       </mat-card>
     </div>
-  } @else {
-    <div class="loading">
-      Cargando perfil...
-    </div>
   }
   `,
   styleUrls: ['./profile.scss']
