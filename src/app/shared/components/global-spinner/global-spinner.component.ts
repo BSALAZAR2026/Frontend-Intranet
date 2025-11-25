@@ -1,37 +1,17 @@
-import { Component, inject } from '@angular/core';
-import { CommonModule } from '@angular/common';
-import { MatProgressSpinnerModule } from '@angular/material/progress-spinner';
-import { LoadingService } from '../../../core/services/loading.service';
+import { CommonModule } from "@angular/common";
+import { LoadingService } from "../../../core/services/loading.service";
+import { Component, inject } from "@angular/core";
 
 @Component({
   selector: 'app-global-spinner',
   standalone: true,
-  imports: [CommonModule, MatProgressSpinnerModule],
+  imports: [CommonModule],
   template: `
-    @if (isLoading()) {
-      <div class="overlay">
-        <mat-progress-spinner diameter="56" mode="indeterminate"></mat-progress-spinner>
-      </div>
-    }
-  `,
-  styles: [`
-    .overlay {
-      position: fixed;
-      inset: 0;
-      display:flex;
-      align-items:center;
-      justify-content:center;
-      background: rgba(0,0,0,0.12);
-      z-index: 2000;
-      pointer-events: none;
-    }
-    mat-progress-spinner {
-      pointer-events: auto;
-      background: white;
-      border-radius: 50%;
-      padding: 6px;
-    }
-  `]
+    <div id="splash-screen" [class.hide]="!isLoading()">
+      <img src="/assets/images/ProScienceLogo.png" class="logo" />
+      <p>Cargando...</p>
+    </div>
+  `
 })
 export class GlobalSpinnerComponent {
   private loadingService = inject(LoadingService);
