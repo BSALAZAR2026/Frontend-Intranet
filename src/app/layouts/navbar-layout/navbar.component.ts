@@ -62,8 +62,6 @@ export class NavbarComponent implements OnInit {
         menuElement.classList.remove('open');
       }
     }
-    
-    console.log('Menu toggled:', this.isMenuOpen);
   }
 
   closeMenu(event?: MouseEvent) {
