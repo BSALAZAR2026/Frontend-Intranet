@@ -24,12 +24,18 @@ export class LoginFacade {
         this.router.navigate(['/home']);
       },
       error: (err) => {
-          if (err.status === 400) {
-            this.errorMessage$.next('Correo o contraseña incorrectos');
-          } else {
-            this.errorMessage$.next('Error al iniciar sesión, intenta nuevamente');
-          }
-        }
+      console.log('ERROR:', err);
+
+      if (err.status === 400) {
+        const message = typeof err.error === 'string' 
+          ? err.error 
+          : err.error?.message;
+
+        this.errorMessage$.next(message || 'Correo o contraseña incorrectos');
+      } else {
+        this.errorMessage$.next('Error al iniciar sesión, intenta nuevamente');
+      }
+    }
     });
   }
 
