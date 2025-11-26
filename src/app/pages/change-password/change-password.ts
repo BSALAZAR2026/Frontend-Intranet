@@ -14,7 +14,7 @@ export interface PasswordCredentials {
   imports: [FormsModule, CommonModule],
   templateUrl: './change-password.html'
 })
-export class ChangePassword {
+export class ChangePasswordComponent {
 
   email: string = '';
   newPassword: string = '';

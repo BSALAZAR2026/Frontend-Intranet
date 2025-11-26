@@ -24,6 +24,7 @@ export const routes: Routes = [
       { path: 'academy', loadComponent: () => import('./pages/academy/academy').then(m => m.AcademyComponent)},
       { path: 'documents', loadComponent: () => import('./pages/documents/documents').then(m => m.DocumentsComponent)},
       { path: 'requeriments', loadComponent: () => import('./pages/requeriments/requeriments').then(m => m.RequerimentsComponent)},
+      {path: 'change-password', loadComponent: () => import('./pages/change-password/change-password').then(m => m.ChangePasswordComponent)}
     ]
   },
 
