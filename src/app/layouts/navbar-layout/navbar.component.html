@@ -47,7 +47,7 @@
   <a routerLink="/documents" routerLinkActive="active" (click)="closeMenu()">Documentos</a>
   <a routerLink="/requeriments" routerLinkActive="active" (click)="closeMenu()">Requerimientos</a>
   <a routerLink="/profile" routerLinkActive="active" (click)="closeMenu()">Perfil</a>
-  @if (['ADMIN'].includes(role!)) {
+  @if (['ROLE_ADMIN'].includes(role!)) {
     <a
       routerLink="/admin"
       routerLinkActive="active"
