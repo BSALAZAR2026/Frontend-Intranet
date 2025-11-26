@@ -19,6 +19,7 @@ export class NavbarComponent implements OnInit {
 
   user: LoginInfo | null = null;
   isMenuOpen: boolean = false;
+  role: string | null = null;
 
   constructor(
     private userService: UserService,
@@ -34,6 +35,7 @@ export class NavbarComponent implements OnInit {
         next: (data) => {
           this.user = { ...data, loginTime: new Date() };
           this.sessionService.setLoginInfo(this.user);
+          this.role = this.sessionService.getRole();
         }
       });
     }

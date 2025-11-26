@@ -28,6 +28,19 @@ export class SessionService {
     return null;
   }
 
+  getRole(): string | null {
+    const token = this.getToken();
+    if(!token) return null;
+
+    try {
+      const payload = JSON.parse(atob(token.split('.')[1]));
+      return payload.role || null;
+    } catch(e){
+      console.error('Error decoding token', e);
+      return null;
+    }
+  }
+
   getLoginInfo(): LoginInfo | null {
     if (isPlatformBrowser(this.platformId)) {
       const stored = localStorage.getItem('loginInfo');
@@ -53,3 +66,4 @@ export class SessionService {
     this.loginInfoSubject.next(null);
   }
 }
+

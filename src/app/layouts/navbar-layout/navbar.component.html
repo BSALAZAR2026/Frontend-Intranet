@@ -35,9 +35,10 @@
 </header>
 
 <!-- Overlay -->
-<div class="menu-overlay" 
-     *ngIf="isMenuOpen"
-     (click)="closeMenu($event)"></div>
+@if (isMenuOpen) {
+  <div class="menu-overlay" (click)="closeMenu($event)"></div>
+}
+
 
 <!-- Side Menu -->
 <nav class="side-menu">
@@ -46,4 +47,12 @@
   <a routerLink="/documents" routerLinkActive="active" (click)="closeMenu()">Documentos</a>
   <a routerLink="/requeriments" routerLinkActive="active" (click)="closeMenu()">Requerimientos</a>
   <a routerLink="/profile" routerLinkActive="active" (click)="closeMenu()">Perfil</a>
+  @if (['ADMIN'].includes(role!)) {
+    <a
+      routerLink="/admin"
+      routerLinkActive="active"
+      (click)="closeMenu()">
+      Cambio de Contraseña
+    </a>
+    }
 </nav>
