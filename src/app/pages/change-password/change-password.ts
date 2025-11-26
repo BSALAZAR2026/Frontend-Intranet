@@ -30,7 +30,7 @@ export class ChangePassword {
 
     this.authService.changePassword(body).subscribe({
       next: () => {
-        this.message = 'Contraseña actualizada exitosamente 🎉';
+        this.message = 'Contraseña actualizada exitosamente';
       },
       error: (err) => {
         console.log('ERROR:', err);
