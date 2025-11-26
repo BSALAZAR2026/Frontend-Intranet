@@ -12,7 +12,8 @@ export interface PasswordCredentials {
   selector: 'app-change-password',
   standalone: true,
   imports: [FormsModule, CommonModule],
-  templateUrl: './change-password.html'
+  templateUrl: './change-password.html',
+  styleUrl: './change-password.scss'
 })
 export class ChangePasswordComponent {
 
