@@ -1,44 +1,27 @@
 <div class="academy-container">
   <h2>Academia ProScience</h2>
+
   <div class="video-wrapper">
-    <iframe 
-      src="https://www.youtube.com/embed/JXc9iQXRMLg?autoplay=1&mute=1&loop=1&playlist=JXc9iQXRMLg" 
-      frameborder="0" 
-      allow="autoplay; encrypted-media" 
-      allowfullscreen
-      class="media-video">
+    <iframe
+      src="https://www.youtube.com/embed/JXc9iQXRMLg?autoplay=1&mute=1&loop=1&playlist=JXc9iQXRMLg"
+      allow="autoplay; encrypted-media"
+      allowfullscreen>
     </iframe>
   </div>
-    <div class="doc-trainings">
+
+  <div class="doc-trainings">
     <h3>Capacitaciones con el Doc</h3>
+
     <div class="doc-videos">
-      <div class="video-wrapper">
-        <iframe 
-          src="https://prosciencelab-my.sharepoint.com/personal/coordinador_ti_proscience_com_co/_layouts/15/embed.aspx?UniqueId=5b5e3df7-c202-4654-9f96-7d68a9361fc5"
-          frameborder="0"
-          scrolling="no"
-          allowfullscreen
-          title="¿QUIERES PERDER GRASA SIN SACRIFICAR TUS MÚSCULOS_.mp4">
+      <div class="video-wrapper" *ngFor="let v of loadedVideos">
+        <iframe
+          [src]="v | safeUrl"
+          loading="lazy"
+          allowfullscreen>
         </iframe>
-      </div>
-      <div class="video-wrapper">
-        <iframe 
-          src="https://prosciencelab-my.sharepoint.com/personal/coordinador_ti_proscience_com_co/_layouts/15/embed.aspx?UniqueId=ea9a08d3-cd51-4fad-bfc8-abd4dfcf6f6a"
-          frameborder="0"
-          scrolling="no"
-          allowfullscreen
-          title="5 Tips para ser + Productivos.mp4">
-        </iframe>
-      </div>
-      <div class="video-wrapper">
-      <iframe src="https://prosciencelab-my.sharepoint.com/personal/coordinador_ti_proscience_com_co/_layouts/15/embed.aspx?UniqueId=dc4f8ae1-13da-43bd-ad13-60fe2c337380&embed=%7B%22ust%22%3Afalse%2C%22hv%22%3A%22CopyEmbedCode%22%7D&referrer=StreamWebApp&referrerScenario=EmbedDialog.Create" 
-        width="640" 
-        height="360" 
-        frameborder="0" 
-        scrolling="no" 
-        allowfullscreen title="Farid Naffah - Preparando el PreWorkOut ft. Dr. Wilson Martínez.mp4">
-      </iframe>
       </div>
     </div>
+
+    <div #infiniteTrigger style="height: 40px; width: 100%;"></div>
   </div>
 </div>
