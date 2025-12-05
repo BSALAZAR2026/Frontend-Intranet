@@ -13,13 +13,15 @@
     <h3>Capacitaciones con el Doc</h3>
 
     <div class="doc-videos">
-      <div class="video-wrapper" *ngFor="let v of loadedVideos">
+    @for (v of loadedVideos; track v) {
+      <div class="video-wrapper">
         <iframe
           [src]="v | safeUrl"
           loading="lazy"
           allowfullscreen>
         </iframe>
       </div>
+    }
     </div>
 
     <div #infiniteTrigger style="height: 40px; width: 100%;"></div>
