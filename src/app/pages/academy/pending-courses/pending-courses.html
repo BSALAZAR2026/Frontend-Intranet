@@ -2,7 +2,6 @@
 
   <h3>Cursos pendientes</h3>
 
-  <!-- Lista de cursos -->
   <div class="course-list">
     @for (course of pendingCourses; track course.id) {
       <div
@@ -16,7 +15,6 @@
     }
   </div>
 
-  <!-- Detalle del curso -->
   @if (selectedCourse) {
     <div class="course-detail">
 

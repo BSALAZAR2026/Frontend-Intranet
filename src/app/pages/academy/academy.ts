@@ -1,14 +1,19 @@
 import { Component, OnInit, AfterViewInit, ElementRef, ViewChild } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { VIDEOS } from './videos.data';
-import { SafeUrlPipe } from "./safe-url.pipe";
+import { SafeUrlPipe } from './safe-url.pipe';
 import { LoginInfo } from '../../core/models/login-info.models';
 import { SessionService } from '../../core/services/session.service';
+import { PendingCoursesComponent } from './pending-courses/pending-courses';
 
 @Component({
   selector: 'app-academia',
   standalone: true,
-  imports: [CommonModule, SafeUrlPipe],
+  imports: [
+    CommonModule,
+    SafeUrlPipe,
+    PendingCoursesComponent
+  ],
   templateUrl: './academy.html',
   styleUrl: './academy.scss'
 })
@@ -19,14 +24,13 @@ export class AcademyComponent implements OnInit, AfterViewInit {
   itemsPerLoad = 3;
   user: LoginInfo | null = null;
 
-  constructor(private sessionService: SessionService){}
-
   @ViewChild('infiniteTrigger') infiniteTrigger!: ElementRef;
-  
+
+  constructor(private sessionService: SessionService) {}
 
   ngOnInit() {
-    this.loadMore();
     this.user = this.sessionService.getLoginInfo();
+    this.loadMore();
   }
 
   ngAfterViewInit() {

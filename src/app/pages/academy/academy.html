@@ -1,5 +1,6 @@
 <div class="academy-container">
-   <div class="academy-text">
+
+  <div class="academy-text">
     <h2>
       Bienvenido a tu Academia ProScience,
       <span class="user-name">{{ user?.firstName }}</span>
@@ -16,21 +17,26 @@
     </iframe>
   </div>
 
+  <section class="academy-section">
+    <app-pending-courses />
+  </section>
+
   <div class="doc-trainings">
     <h3>Capacitaciones con el Doc Wilson Martinez</h3>
 
     <div class="doc-videos">
-    @for (v of loadedVideos; track v) {
-      <div class="video-wrapper">
-        <iframe
-          [src]="v | safeUrl"
-          loading="lazy"
-          allowfullscreen>
-        </iframe>
-      </div>
-    }
+      @for (v of loadedVideos; track v) {
+        <div class="video-wrapper">
+          <iframe
+            [src]="v | safeUrl"
+            loading="lazy"
+            allowfullscreen>
+          </iframe>
+        </div>
+      }
     </div>
 
     <div #infiniteTrigger style="height: 40px; width: 100%;"></div>
   </div>
+
 </div>
