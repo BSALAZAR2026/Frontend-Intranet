@@ -2,6 +2,8 @@ import { Component, OnInit, AfterViewInit, ElementRef, ViewChild } from '@angula
 import { CommonModule } from '@angular/common';
 import { VIDEOS } from './videos.data';
 import { SafeUrlPipe } from "./safe-url.pipe";
+import { LoginInfo } from '../../core/models/login-info.models';
+import { SessionService } from '../../core/services/session.service';
 
 @Component({
   selector: 'app-academia',
@@ -15,11 +17,16 @@ export class AcademyComponent implements OnInit, AfterViewInit {
   allVideos = VIDEOS;
   loadedVideos: string[] = [];
   itemsPerLoad = 3;
+  user: LoginInfo | null = null;
+
+  constructor(private sessionService: SessionService){}
 
   @ViewChild('infiniteTrigger') infiniteTrigger!: ElementRef;
+  
 
   ngOnInit() {
     this.loadMore();
+    this.user = this.sessionService.getLoginInfo();
   }
 
   ngAfterViewInit() {
