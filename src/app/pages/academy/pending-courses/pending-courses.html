@@ -1,0 +1,59 @@
+<section class="pending-courses">
+
+  <h3>Cursos pendientes</h3>
+
+  <!-- Lista de cursos -->
+  <div class="course-list">
+    @for (course of pendingCourses; track course.id) {
+      <div
+        class="course-card"
+        (click)="selectCourse(course)"
+        [class.active]="course === selectedCourse"
+      >
+        <h4>{{ course.title }}</h4>
+        <p>{{ course.description }}</p>
+      </div>
+    }
+  </div>
+
+  <!-- Detalle del curso -->
+  @if (selectedCourse) {
+    <div class="course-detail">
+
+      <h4>{{ selectedCourse.title }}</h4>
+
+      @for (module of selectedCourse.modules; let mi = $index; track module.id) {
+        <h5>{{ module.title }}</h5>
+
+        @for (lesson of module.lessons; let li = $index; track lesson.id) {
+          <div
+            class="lesson-card"
+            [class.locked]="!isLessonUnlocked(mi, li)"
+          >
+            <h6>{{ lesson.title }}</h6>
+
+            @if (isLessonUnlocked(mi, li)) {
+              <iframe [src]="lesson.videoUrl | safeUrl"></iframe>
+
+              @if (!lesson.completed) {
+                <button (click)="completeLesson(mi, li)">
+                  Marcar como completado
+                </button>
+              }
+            }
+
+            @if (!isLessonUnlocked(mi, li)) {
+              <p class="locked-text">Completa la lección anterior</p>
+            }
+
+            @if (lesson.completed) {
+              <span class="completed-badge">Completado</span>
+            }
+          </div>
+        }
+      }
+
+    </div>
+  }
+
+</section>

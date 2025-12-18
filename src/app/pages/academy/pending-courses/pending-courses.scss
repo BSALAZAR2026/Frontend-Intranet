@@ -1,0 +1,60 @@
+.pending-courses {
+  width: 90%;
+  max-width: 1200px;
+  margin-top: 3rem;
+}
+
+.course-list {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(260px, 1fr));
+  gap: 1.5rem;
+  margin-bottom: 2rem;
+}
+
+.course-card {
+  background: #fff;
+  border-radius: 14px;
+  padding: 1.2rem;
+  cursor: pointer;
+  box-shadow: 0 4px 10px rgba(0,0,0,.12);
+  transition: transform .2s;
+}
+
+.course-card:hover {
+  transform: translateY(-4px);
+}
+
+.course-card.active {
+  border: 2px solid var(--color-secundary);
+}
+
+.course-detail {
+  margin-top: 2rem;
+}
+
+.lesson-card {
+  background: #f9fafb;
+  border-radius: 12px;
+  padding: 1rem;
+  margin-bottom: 1.5rem;
+}
+
+.lesson-card iframe {
+  width: 100%;
+  height: 280px;
+  border-radius: 10px;
+}
+
+.lesson-card.locked {
+  opacity: .5;
+}
+
+.completed-badge {
+  color: green;
+  font-weight: 600;
+}
+
+.locked-text {
+  color: #dc2626;
+  font-size: .9rem;
+}
