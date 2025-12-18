@@ -17,26 +17,13 @@
     </iframe>
   </div>
 
-  <section class="academy-section">
-    <app-pending-courses />
+  <nav class="academy-nav">
+    <a routerLink="pending" routerLinkActive="active">Pendientes</a>
+    <a routerLink="completed" routerLinkActive="active">Completados</a>
+    <a routerLink="certificates" routerLinkActive="active">Certificados</a>
+  </nav>
+  <section class="academy-content">
+    <router-outlet/>
   </section>
-
-  <div class="doc-trainings">
-    <h3>Capacitaciones con el Doc Wilson Martinez</h3>
-
-    <div class="doc-videos">
-      @for (v of loadedVideos; track v) {
-        <div class="video-wrapper">
-          <iframe
-            [src]="v | safeUrl"
-            loading="lazy"
-            allowfullscreen>
-          </iframe>
-        </div>
-      }
-    </div>
-
-    <div #infiniteTrigger style="height: 40px; width: 100%;"></div>
-  </div>
 
 </div>

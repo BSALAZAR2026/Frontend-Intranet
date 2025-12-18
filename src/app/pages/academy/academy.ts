@@ -4,7 +4,7 @@ import { VIDEOS } from './videos.data';
 import { SafeUrlPipe } from './safe-url.pipe';
 import { LoginInfo } from '../../core/models/login-info.models';
 import { SessionService } from '../../core/services/session.service';
-import { PendingCoursesComponent } from './pending-courses/pending-courses';
+import { RouterOutlet } from "@angular/router";
 
 @Component({
   selector: 'app-academia',
@@ -12,8 +12,8 @@ import { PendingCoursesComponent } from './pending-courses/pending-courses';
   imports: [
     CommonModule,
     SafeUrlPipe,
-    PendingCoursesComponent
-  ],
+    RouterOutlet
+],
   templateUrl: './academy.html',
   styleUrl: './academy.scss'
 })
