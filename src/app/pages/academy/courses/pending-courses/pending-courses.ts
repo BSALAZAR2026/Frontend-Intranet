@@ -23,7 +23,6 @@ export class PendingCoursesComponent implements OnInit {
   ngOnInit(): void {
     this.pendingCourses = COURSES.filter(c => !c.examPassed);
   }
-
   selectCourse(course: Course): void {
     this.selectedCourse = course;
   }
