@@ -11,6 +11,14 @@
       >
         <h4>{{ course.title }}</h4>
         <p>{{ course.description }}</p>
+
+        @if (course.videoCompleted && !course.examPassed) {
+          <span class="badge warning">Evaluación pendiente</span>
+        }
+
+        @if (course.examPassed) {
+          <span class="badge success">Aprobado</span>
+        }
       </div>
     }
   </div>
@@ -20,35 +28,30 @@
 
       <h4>{{ selectedCourse.title }}</h4>
 
-      @for (module of selectedCourse.modules; let mi = $index; track module.id) {
-        <h5>{{ module.title }}</h5>
+      <div class="video-wrapper">
+        <iframe
+          [src]="selectedCourse.videoUrl | safeUrl"
+          (load)="onVideoLoad()">
+        </iframe>
+      </div>
 
-        @for (lesson of module.lessons; let li = $index; track lesson.id) {
-          <div
-            class="lesson-card"
-            [class.locked]="!isLessonUnlocked(mi, li)"
-          >
-            <h6>{{ lesson.title }}</h6>
+      @if (!selectedCourse.videoCompleted) {
+        <p class="info-text">
+          Debes ver el video completo para desbloquear la evaluación
+        </p>
+      }
 
-            @if (isLessonUnlocked(mi, li)) {
-              <iframe [src]="lesson.videoUrl | safeUrl"></iframe>
+      @if (selectedCourse.videoCompleted && !selectedCourse.examPassed) {
+        <a
+          class="exam-btn"
+          [href]="selectedCourse.examUrl"
+          target="_blank">
+          Presentar evaluación
+        </a>
+      }
 
-              @if (!lesson.completed) {
-                <button (click)="completeLesson(mi, li)">
-                  Marcar como completado
-                </button>
-              }
-            }
-
-            @if (!isLessonUnlocked(mi, li)) {
-              <p class="locked-text">Completa la lección anterior</p>
-            }
-
-            @if (lesson.completed) {
-              <span class="completed-badge">Completado</span>
-            }
-          </div>
-        }
+      @if (selectedCourse.examPassed) {
+        <p class="success-text">Curso aprobado 🎉</p>
       }
 
     </div>
