@@ -1,13 +1,16 @@
 import { Routes } from '@angular/router';
-import { AcademyComponent } from './academy';
-import { PendingCoursesComponent } from './pending-courses/pending-courses';
-// import { CompletedCoursesComponent } from './completed-courses/completed-courses.component';
-// import { CertificatesComponent } from './certificates/certificates.component';
+import { AcademyComponent } from '../academy';
+import { AcademyCoursesLayoutComponent } from '../courses/layout/layout-courses';
+import { PendingCoursesComponent } from '../courses/pending-courses/pending-courses';
 
 export const ACADEMY_ROUTES: Routes = [
   {
     path: '',
-    component: AcademyComponent,
+    component: AcademyComponent
+  },
+  {
+    path: 'courses',
+    component: AcademyCoursesLayoutComponent,
     children: [
       { path: '', redirectTo: 'pending', pathMatch: 'full' },
       { path: 'pending', component: PendingCoursesComponent },

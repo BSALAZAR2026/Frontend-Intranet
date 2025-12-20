@@ -1,14 +1,15 @@
-<div class="academy-container">
+<section class="academy-landing">
 
-  <div class="academy-text">
-    <h2>
+  <header class="academy-hero">
+    <h2 class="academy-title">
       Bienvenido a tu Academia ProScience,
       <span class="user-name">{{ user?.firstName }}</span>
     </h2>
+
     <p class="academy-subtitle">
       Continúa tu proceso de formación y certificación
     </p>
-  </div>
+  </header>
 
   <div class="academy-video">
     <iframe
@@ -17,13 +18,10 @@
     </iframe>
   </div>
 
-  <nav class="academy-nav">
-    <a routerLink="pending" routerLinkActive="active">Pendientes</a>
-    <a routerLink="completed" routerLinkActive="active">Completados</a>
-    <a routerLink="certificates" routerLinkActive="active">Certificados</a>
-  </nav>
-  <section class="academy-content">
-    <router-outlet/>
-  </section>
+  <div class="academy-actions">
+    <a routerLink="courses/pending" class="enter-academy">
+      Ir a mis cursos
+    </a>
+  </div>
 
-</div>
+</section>

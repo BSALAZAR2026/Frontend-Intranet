@@ -21,7 +21,7 @@ export const routes: Routes = [
     children: [
       { path: 'home', loadComponent: () => import('./pages/home/home').then(m => m.HomeComponent)},
       { path: 'profile', loadComponent: () => import('./pages/profile/profile').then(m => m.ProfilePageComponent)},
-      {path: 'academy', loadChildren: () => import('./pages/academy/academy.routes').then(m => m.ACADEMY_ROUTES)},
+      {path: 'academy', loadChildren: () => import('./pages/academy/routes/academy.routes').then(m => m.ACADEMY_ROUTES)},
       { path: 'documents', loadComponent: () => import('./pages/documents/documents').then(m => m.DocumentsComponent)},
       { path: 'requeriments', loadComponent: () => import('./pages/requeriments/requeriments').then(m => m.RequerimentsComponent)},
       {path: 'change-password', loadComponent: () => import('./pages/change-password/change-password').then(m => m.ChangePasswordComponent)}

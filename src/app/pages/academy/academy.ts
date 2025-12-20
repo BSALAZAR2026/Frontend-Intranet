@@ -1,7 +1,7 @@
 import { Component, OnInit, AfterViewInit, ElementRef, ViewChild } from '@angular/core';
 import { CommonModule } from '@angular/common';
-import { VIDEOS } from './videos.data';
-import { SafeUrlPipe } from './safe-url.pipe';
+import { VIDEOS } from './data/videos.data';
+import { SafeUrlPipe } from './data/safe-url.pipe';
 import { LoginInfo } from '../../core/models/login-info.models';
 import { SessionService } from '../../core/services/session.service';
 import { RouterOutlet } from "@angular/router";

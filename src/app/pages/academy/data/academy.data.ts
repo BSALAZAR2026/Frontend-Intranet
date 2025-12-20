@@ -1,4 +1,4 @@
-import { Course } from '../../core/models/academy.models';
+import { Course } from '../../../core/models/academy.models';
 
 export const COURSES: Course[] = [
   {
