@@ -8,7 +8,6 @@
   display: grid;
   grid-template-columns: repeat(auto-fill, minmax(260px, 1fr));
   gap: 1.5rem;
-  margin-bottom: 2rem;
 }
 
 .course-card {
@@ -17,15 +16,16 @@
   padding: 1.2rem;
   cursor: pointer;
   box-shadow: 0 4px 10px rgba(0,0,0,.12);
-  transition: transform .2s;
-}
+  transition: transform .2s, box-shadow .2s;
 
-.course-card:hover {
-  transform: translateY(-4px);
-}
+  &:hover {
+    transform: translateY(-4px);
+    box-shadow: 0 8px 18px rgba(0,0,0,.18);
+  }
 
-.course-card.active {
-  border: 2px solid var(--color-secundary);
+  &.active {
+    border: 2px solid var(--color-secundary);
+  }
 }
 
 .course-detail {
@@ -37,20 +37,20 @@
   border-radius: 12px;
   padding: 1rem;
   margin-bottom: 1.5rem;
-}
 
-.lesson-card iframe {
-  width: 100%;
-  height: 280px;
-  border-radius: 10px;
-}
+  iframe {
+    width: 100%;
+    height: 280px;
+    border-radius: 10px;
+  }
 
-.lesson-card.locked {
-  opacity: .5;
+  &.locked {
+    opacity: .5;
+  }
 }
 
 .completed-badge {
-  color: green;
+  color: #16a34a;
   font-weight: 600;
 }
 

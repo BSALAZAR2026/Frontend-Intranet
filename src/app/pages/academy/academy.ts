@@ -1,50 +1,38 @@
-import { Component, OnInit, AfterViewInit, ElementRef, ViewChild } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import { CommonModule } from '@angular/common';
-import { VIDEOS } from './data/videos.data';
-import { SafeUrlPipe } from './data/safe-url.pipe';
 import { LoginInfo } from '../../core/models/login-info.models';
 import { SessionService } from '../../core/services/session.service';
-import { RouterOutlet } from "@angular/router";
+import { NavigationEnd, Router, RouterOutlet } from '@angular/router';
+import { filter } from 'rxjs';
 
 @Component({
   selector: 'app-academia',
   standalone: true,
   imports: [
     CommonModule,
-    SafeUrlPipe,
     RouterOutlet
-],
+  ],
   templateUrl: './academy.html',
   styleUrl: './academy.scss'
 })
-export class AcademyComponent implements OnInit, AfterViewInit {
+export class AcademyComponent implements OnInit {
 
-  allVideos = VIDEOS;
-  loadedVideos: string[] = [];
-  itemsPerLoad = 3;
   user: LoginInfo | null = null;
+  showIntroVideo = true;
 
-  @ViewChild('infiniteTrigger') infiniteTrigger!: ElementRef;
+  constructor(
+    private sessionService: SessionService,
+    private router: Router
+  ) {
+    this.router.events
+      .pipe(filter(event => event instanceof NavigationEnd))
+      .subscribe((event: NavigationEnd) => {
+        // Solo mostrar video en el landing /academy
+        this.showIntroVideo = event.urlAfterRedirects === '/academy';
+      });
+  }
 
-  constructor(private sessionService: SessionService) {}
-
-  ngOnInit() {
+  ngOnInit(): void {
     this.user = this.sessionService.getLoginInfo();
-    this.loadMore();
-  }
-
-  ngAfterViewInit() {
-    const observer = new IntersectionObserver(entries => {
-      if (entries.some(e => e.isIntersecting)) {
-        this.loadMore();
-      }
-    });
-
-    observer.observe(this.infiniteTrigger.nativeElement);
-  }
-
-  loadMore() {
-    const next = this.allVideos.splice(0, this.itemsPerLoad);
-    this.loadedVideos.push(...next);
   }
 }

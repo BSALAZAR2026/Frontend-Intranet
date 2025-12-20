@@ -1,27 +1,34 @@
-<section class="academy-landing">
+<section class="academy-container">
 
   <header class="academy-hero">
-    <h2 class="academy-title">
+    <h2>
       Bienvenido a tu Academia ProScience,
       <span class="user-name">{{ user?.firstName }}</span>
     </h2>
-
     <p class="academy-subtitle">
       Continúa tu proceso de formación y certificación
     </p>
   </header>
 
-  <div class="academy-video">
-    <iframe
-      src="https://www.youtube.com/embed/JXc9iQXRMLg?autoplay=1&mute=1&loop=1&playlist=JXc9iQXRMLg"
-      allow="autoplay; encrypted-media">
-    </iframe>
-  </div>
+  <nav class="academy-nav">
+    <a routerLink="pending" routerLinkActive="active">Pendientes</a>
+    <a  routerLink="completed" routerLinkActive="active">Completados</a>
+    <a routerLink="certificates" routerLinkActive="active">Certificados</a>
+  </nav>
 
-  <div class="academy-actions">
-    <a routerLink="courses/pending" class="enter-academy">
-      Ir a mis cursos
-    </a>
-  </div>
+
+
+  @if (showIntroVideo) {
+    <div class="academy-video">
+      <iframe
+        src="https://www.youtube.com/embed/JXc9iQXRMLg?autoplay=1&mute=1&loop=1&playlist=JXc9iQXRMLg"
+        allow="autoplay; encrypted-media">
+      </iframe>
+    </div>
+  }
+
+  <section class="academy-content">
+    <router-outlet />
+  </section>
 
 </section>
