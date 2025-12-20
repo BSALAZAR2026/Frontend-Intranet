@@ -29,7 +29,7 @@ export class AcademyComponent implements OnInit {
     .pipe(filter(event => event instanceof NavigationEnd))
     .subscribe((event: NavigationEnd) => {
      const url = event.urlAfterRedirects;
-     this.showIntroVideo = url === '/academy/';
+     this.showIntroVideo = url === '/academy';
   });
 
   }
