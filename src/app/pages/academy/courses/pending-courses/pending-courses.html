@@ -12,7 +12,7 @@
         <h4>{{ course.title }}</h4>
         <p>{{ course.description }}</p>
 
-        @if (course.videoCompleted && !course.examPassed) {
+        @if (!course.examPassed) {
           <span class="badge warning">Evaluación pendiente</span>
         }
 
@@ -30,18 +30,11 @@
 
       <div class="video-wrapper">
         <iframe
-          [src]="selectedCourse.videoUrl | safeUrl"
-          (load)="onVideoLoad()">
+          [src]="selectedCourse.videoUrl | safeUrl">
         </iframe>
       </div>
 
-      @if (!selectedCourse.videoCompleted) {
-        <p class="info-text">
-          Debes ver el video completo para desbloquear la evaluación
-        </p>
-      }
-
-      @if (selectedCourse.videoCompleted && !selectedCourse.examPassed) {
+      @if (!selectedCourse.examPassed) {
         <a
           class="exam-btn"
           [href]="selectedCourse.examUrl"
