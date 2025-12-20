@@ -25,11 +25,12 @@ export class AcademyComponent implements OnInit {
     private router: Router
   ) {
     this.router.events
-      .pipe(filter(event => event instanceof NavigationEnd))
-      .subscribe((event: NavigationEnd) => {
-        // Solo mostrar video en el landing /academy
-        this.showIntroVideo = event.urlAfterRedirects === '/academy';
-      });
+    .pipe(filter(event => event instanceof NavigationEnd))
+    .subscribe((event: NavigationEnd) => {
+     const url = event.urlAfterRedirects;
+     this.showIntroVideo = url === '/academy/';
+  });
+
   }
 
   ngOnInit(): void {
