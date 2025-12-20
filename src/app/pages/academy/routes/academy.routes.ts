@@ -7,9 +7,11 @@ export const ACADEMY_ROUTES: Routes = [
     path: '',
     component: AcademyComponent,
     children: [
+      { path: '', pathMatch: 'full', redirectTo: 'pending' },
       { path: 'pending', component: PendingCoursesComponent },
       // { path: 'completed', component: CompletedCoursesComponent },
       // { path: 'certificates', component: CertificatesComponent }
     ]
   }
 ];
+
