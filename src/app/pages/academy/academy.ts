@@ -2,7 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { LoginInfo } from '../../core/models/login-info.models';
 import { SessionService } from '../../core/services/session.service';
-import { NavigationEnd, Router, RouterOutlet } from '@angular/router';
+import { NavigationEnd, Router, RouterModule, RouterOutlet } from '@angular/router';
 import { filter } from 'rxjs';
 
 @Component({
@@ -10,7 +10,8 @@ import { filter } from 'rxjs';
   standalone: true,
   imports: [
     CommonModule,
-    RouterOutlet
+    RouterOutlet,
+    RouterModule
   ],
   templateUrl: './academy.html',
   styleUrl: './academy.scss'
