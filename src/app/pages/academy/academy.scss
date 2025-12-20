@@ -90,8 +90,6 @@
   display: flex;
   gap: 1.5rem;
   margin-top: 2rem;
-  background-color: var(--color-secundary);
-  border-radius: 20%;
 }
 
 .academy-nav a {
@@ -100,6 +98,8 @@
   font-weight: 600;
   text-decoration: none;
   color: #4b5563;
+  background-color: var(--color-secundary);
+  cursor: pointer;
 }
 
 .academy-nav a.active {
