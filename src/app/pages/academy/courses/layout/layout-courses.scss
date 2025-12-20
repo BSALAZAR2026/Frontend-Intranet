@@ -1,0 +1,31 @@
+.academy-courses {
+  width: 100%;
+  padding: 1.5rem;
+}
+
+.academy-nav {
+  display: flex;
+  justify-content: center;
+  gap: 1.5rem;
+  margin-bottom: 2rem;
+}
+
+.academy-nav a {
+  padding: 0.6rem 1.4rem;
+  border-radius: 999px;
+  font-weight: 600;
+  text-decoration: none;
+  color: #4b5563;
+  background-color: #e5e7eb;
+  transition: all 0.2s ease;
+}
+
+.academy-nav a.active {
+  background-color: var(--color-secundary);
+  color: #fff;
+}
+
+.academy-content {
+  max-width: 1200px;
+  margin: 0 auto;
+}

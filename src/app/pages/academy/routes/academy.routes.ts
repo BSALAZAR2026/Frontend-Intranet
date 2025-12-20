@@ -14,8 +14,9 @@ export const ACADEMY_ROUTES: Routes = [
     children: [
       { path: '', redirectTo: 'pending', pathMatch: 'full' },
       { path: 'pending', component: PendingCoursesComponent },
-      // { path: 'completed', component: CompletedCoursesComponent },
-      // { path: 'certificates', component: CertificatesComponent }
+      // completed
+      // certificates
     ]
   }
 ];
+
