@@ -1,8 +1,6 @@
 import { Routes } from '@angular/router';
 import { AcademyComponent } from '../academy';
 import { PendingCoursesComponent } from '../courses/pending-courses/pending-courses';
-// import { CompletedCoursesComponent } from '../courses/completed-courses/completed-courses';
-// import { CertificatesComponent } from '../courses/certificates/certificates';
 
 export const ACADEMY_ROUTES: Routes = [
   {
