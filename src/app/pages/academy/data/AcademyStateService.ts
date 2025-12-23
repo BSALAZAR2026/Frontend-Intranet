@@ -9,6 +9,6 @@ export class AcademyStateService {
     if (index === 0) return false;
 
     const prev = this.courses[index - 1];
-    return !(prev.videoCompleted && prev.examPassed);
+    return !(prev.examPassed);
   }
 }
