@@ -21,8 +21,17 @@ export class CertificatesComponent implements OnInit {
   constructor(private academyState: AcademyStateService) {}
 
   ngOnInit(): void {
-    this.certifiedCourses = this.academyState.courses
+    const courseId = history.state?.courseId;
+
+    const passedCourses = this.academyState.courses
       .filter(c => c.examPassed);
+
+    this.certifiedCourses = courseId
+      ? passedCourses.filter(c => c.id === courseId)
+      : passedCourses;
   }
 
+  downloadCertificate(course: Course): void {
+    alert(`Descargando certificado de: ${course.title}`);
+  }
 }
