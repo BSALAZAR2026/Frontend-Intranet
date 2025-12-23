@@ -1,60 +1,125 @@
 .pending-courses {
   width: 90%;
   max-width: 1200px;
-  margin-top: 3rem;
+  margin: 3rem auto 0;
+}
+
+.pending-courses h3 {
+  font-size: 1.6rem;
+  font-weight: 700;
+  color: #111827;
+  margin-bottom: 1.5rem;
 }
 
 .course-list {
   display: grid;
-  grid-template-columns: repeat(auto-fill, minmax(260px, 1fr));
-  gap: 1.5rem;
+  grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+  gap: 1.8rem;
 }
 
 .course-card {
-  background: #fff;
-  border-radius: 14px;
-  padding: 1.2rem;
+  position: relative;
+  background: linear-gradient(180deg, #ffffff, #f9fafb);
+  border-radius: 16px;
+  padding: 1.4rem;
   cursor: pointer;
-  box-shadow: 0 4px 10px rgba(0,0,0,.12);
-  transition: transform .2s, box-shadow .2s;
+
+  box-shadow: 0 8px 20px rgba(0,0,0,.08);
+  border: 2px solid transparent;
+
+  transition: all .25s ease;
+
+  h4 {
+    font-size: 1.05rem;
+    font-weight: 700;
+    color: #111827;
+    margin-bottom: .4rem;
+  }
+
+  p {
+    font-size: .95rem;
+    color: #6b7280;
+    line-height: 1.4;
+  }
 
   &:hover {
-    transform: translateY(-4px);
-    box-shadow: 0 8px 18px rgba(0,0,0,.18);
+    transform: translateY(-6px);
+    box-shadow: 0 14px 30px rgba(0,0,0,.12);
   }
 
   &.active {
-    border: 2px solid var(--color-secundary);
+    border-color: var(--color-secundary);
+    box-shadow: 0 16px 36px rgba(0,0,0,.18);
   }
+}
+
+.badge {
+  display: inline-block;
+  margin-top: .8rem;
+  padding: .35rem .75rem;
+  border-radius: 999px;
+  font-size: .75rem;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: .03em;
+}
+
+.badge.warning {
+  background: #fef3c7;
+  color: #92400e;
+}
+
+.badge.success {
+  background: #dcfce7;
+  color: #166534;
 }
 
 .course-detail {
-  margin-top: 2rem;
+  margin-top: 3rem;
+  padding-top: 2rem;
+  border-top: 1px solid #e5e7eb;
+
+  h4 {
+    font-size: 1.4rem;
+    font-weight: 700;
+    color: #111827;
+    margin-bottom: 1rem;
+  }
 }
 
-.lesson-card {
-  background: #f9fafb;
-  border-radius: 12px;
-  padding: 1rem;
+
+.video-wrapper {
+  width: 100%;
+  max-width: 900px;
   margin-bottom: 1.5rem;
+}
 
-  iframe {
-    width: 100%;
-    height: 280px;
-    border-radius: 10px;
-  }
 
-  &.locked {
-    opacity: .5;
+.exam-btn {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: .6rem;
+
+  padding: .9rem 1.8rem;
+  border-radius: 12px;
+
+  background: var(--color-secundary);
+  color: #fff;
+  font-weight: 700;
+  text-decoration: none;
+
+  box-shadow: 0 8px 18px rgba(0,0,0,.25);
+  transition: all .2s ease;
+
+  &:hover {
+    filter: brightness(1.1);
+    transform: translateY(-2px);
   }
 }
 
-.completed-badge {
+.success-text {
+  margin-top: 1rem;
+  font-weight: 700;
   color: #16a34a;
-  font-weight: 600;
-}
-
-.locked-text {
-  color: #dc2626;
-  font-size: .9rem;
 }

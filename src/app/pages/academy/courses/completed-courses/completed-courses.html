@@ -1,3 +1,30 @@
 <section class="completed-courses">
-    <h3>Cursos completados</h3>
+
+  <h3>Cursos completados</h3>
+
+  @if (completedCourses.length === 0) {
+    <p class="empty-text">
+      Aún no has completado ningún curso
+    </p>
+  }
+
+  <div class="course-list">
+    @for (course of completedCourses; track course.id) {
+      <div class="course-card completed">
+
+        <h4>{{ course.title }}</h4>
+        <p>{{ course.description }}</p>
+
+        <span class="badge success">
+          Curso aprobado
+        </span>
+
+        <button class="certificate-btn">
+          Ver certificado
+        </button>
+
+      </div>
+    }
+  </div>
+
 </section>
