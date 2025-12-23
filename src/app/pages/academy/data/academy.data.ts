@@ -8,7 +8,7 @@ export const COURSES: Course[] = [
     videoUrl: 'https://prosciencelab-my.sharepoint.com/personal/coordinador_ti_proscience_com_co/_layouts/15/embed.aspx?UniqueId=dc4f8ae1-13da-43bd-ad13-60fe2c337380',
     examUrl: 'https://forms.office.com/Pages/ResponsePage.aspx?id=wuhu0UwHzUWb_hhHjC1yyXs2qqn3lLBAo1y3ITkn_01UMk05VEwyWU9ZNUNLSEQxUE9XSDhFS0tRSS4u',
     videoCompleted: false,
-    examPassed: false,
+    examPassed: true,
     duration: 0
   },
   {
