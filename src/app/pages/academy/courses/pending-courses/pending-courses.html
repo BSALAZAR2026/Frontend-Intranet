@@ -6,14 +6,14 @@
 
       <div
         class="course-card"
-        (click)="!academyState.isCourseLocked(i) && selectCourse(course)"
+        (click)="!academyState.isCourseLockedById(i) && selectCourse(course)"
         [class.active]="course === selectedCourse"
-        [class.locked]="academyState.isCourseLocked(i)"
+        [class.locked]="academyState.isCourseLockedById(i)"
       >
         <h4>{{ course.title }}</h4>
         <p>{{ course.description }}</p>
 
-        @if (!academyState.isCourseLocked(i)) {
+        @if (!academyState.isCourseLockedById(i)) {
 
           @if (!course.examPassed) {
             <span class="badge warning">Evaluación pendiente</span>

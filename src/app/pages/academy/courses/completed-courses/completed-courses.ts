@@ -31,5 +31,4 @@ export class CompletedCoursesComponent implements OnInit {
     });
   }
 
-  
 }

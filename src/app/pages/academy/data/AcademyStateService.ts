@@ -7,10 +7,10 @@ export class AcademyStateService {
 
   courses: Course[] = [...COURSES];
 
-  isCourseLocked(index: number): boolean {
-    if (index === 0) return false;
+    isCourseLockedById(courseId: number): boolean {
+      const index = this.courses.findIndex(c => c.id === courseId);
+      if (index <= 0) return false;
 
-    const prev = this.courses[index - 1];
-    return !prev.examPassed;
+    return !this.courses[index - 1].examPassed;
   }
 }
