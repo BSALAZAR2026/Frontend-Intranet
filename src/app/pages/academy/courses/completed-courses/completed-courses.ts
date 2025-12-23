@@ -3,6 +3,7 @@ import { Component, OnInit } from "@angular/core";
 import { SafeUrlPipe } from "../../data/safe-url.pipe";
 import { Course } from "../../../../core/models/academy.models";
 import { COURSES } from "../../data/academy.data";
+import { AcademyStateService } from "../../data/AcademyStateService";
 
 @Component({
   selector: 'app-completed-courses',
@@ -17,9 +18,12 @@ import { COURSES } from "../../data/academy.data";
 
 export class CompletedCoursesComponent implements OnInit {
 
+  constructor(private academyState: AcademyStateService){}
+
   completedCourses: Course[] = [];
 
   ngOnInit(): void {
-    this.completedCourses = COURSES.filter(c => c.examPassed);
+    this.completedCourses = this.academyState.courses
+    .filter(c => c.examPassed);
   }
 }

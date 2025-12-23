@@ -11,12 +11,12 @@
     @for (course of completedCourses; track course.id) {
       <div class="course-card completed">
 
-        <h4>{{ course.title }}</h4>
-        <p>{{ course.description }}</p>
+        <div class="card-header">
+          <h4>{{ course.title }}</h4>
+          <span class="badge success">Aprobado</span>
+        </div>
 
-        <span class="badge success">
-          Curso aprobado
-        </span>
+        <p>{{ course.description }}</p>
 
         <button class="certificate-btn">
           Ver certificado
@@ -25,5 +25,4 @@
       </div>
     }
   </div>
-
 </section>
