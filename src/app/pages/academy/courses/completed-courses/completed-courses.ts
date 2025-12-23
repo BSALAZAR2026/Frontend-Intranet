@@ -26,7 +26,7 @@ export class CompletedCoursesComponent implements OnInit {
   }
 
   viewCertificate(course: Course): void {
-    this.router.navigate(['/certificates'], {
+    this.router.navigate(['/academy/certificates'], {
       state: { courseId: course.id }
     });
   }
