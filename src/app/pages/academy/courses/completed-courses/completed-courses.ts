@@ -2,7 +2,7 @@ import { CommonModule } from "@angular/common";
 import { Component, OnInit } from "@angular/core";
 import { Course } from "../../../../core/models/academy.models";
 import { AcademyStateService } from "../../data/AcademyStateService";
-import { Router } from "@angular/router";
+import { ActivatedRoute, Router } from "@angular/router";
 
 @Component({
   selector: 'app-completed-courses',
@@ -16,7 +16,7 @@ import { Router } from "@angular/router";
 
 export class CompletedCoursesComponent implements OnInit {
 
-  constructor(private academyState: AcademyStateService, private router: Router){}
+  constructor(private academyState: AcademyStateService, private router: Router, private route: ActivatedRoute){}
 
   completedCourses: Course[] = [];
 
@@ -26,7 +26,7 @@ export class CompletedCoursesComponent implements OnInit {
   }
 
   viewCertificate(course: Course): void {
-    this.router.navigate(['/academy/certificates'], {
+    this.router.navigate(['../certificates'], {
       state: { courseId: course.id }
     });
   }
