@@ -27,11 +27,12 @@
 
       <h4>{{ selectedCourse.title }}</h4>
 
-      <div class="video-wrapper">
-        <iframe
-          [src]="selectedCourse.videoUrl | safeUrl">
-        </iframe>
-      </div>
+    <div class="video-wrapper">
+      <iframe
+        [src]="selectedCourse.videoUrl | safeUrl"
+        allowfullscreen>
+      </iframe>
+    </div>
 
       @if (!selectedCourse.examPassed) {
         <a
