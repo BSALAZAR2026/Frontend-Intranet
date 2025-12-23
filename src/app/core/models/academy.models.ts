@@ -3,8 +3,6 @@ export interface Course {
   title: string;
   description: string;
   videoUrl: string;
-  duration: number;
   examUrl: string
-  videoCompleted: boolean
   examPassed: boolean
 }

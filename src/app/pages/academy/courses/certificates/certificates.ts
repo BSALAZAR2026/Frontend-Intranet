@@ -1,6 +1,5 @@
 import { CommonModule } from "@angular/common";
 import { Component, OnInit } from "@angular/core";
-import { SafeUrlPipe } from "../../data/safe-url.pipe";
 import { Course } from "../../../../core/models/academy.models";
 import { COURSES } from "../../data/academy.data";
 
@@ -8,8 +7,7 @@ import { COURSES } from "../../data/academy.data";
   selector: 'app-certificates',
   standalone: true,
   imports: [
-    CommonModule,
-    SafeUrlPipe
+    CommonModule
   ],
   templateUrl: './certificates.html',
   styleUrls: ['./certificates.scss']

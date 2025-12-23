@@ -1,24 +1,22 @@
 import { CommonModule } from "@angular/common";
 import { Component, OnInit } from "@angular/core";
-import { SafeUrlPipe } from "../../data/safe-url.pipe";
 import { Course } from "../../../../core/models/academy.models";
-import { COURSES } from "../../data/academy.data";
 import { AcademyStateService } from "../../data/AcademyStateService";
+import { Router } from "@angular/router";
 
 @Component({
   selector: 'app-completed-courses',
   standalone: true,
   imports: [
-    CommonModule,
-    SafeUrlPipe
-  ],
+    CommonModule
+],
   templateUrl: './completed-courses.html',
   styleUrls: ['./completed-courses.scss']
 })
 
 export class CompletedCoursesComponent implements OnInit {
 
-  constructor(private academyState: AcademyStateService){}
+  constructor(private academyState: AcademyStateService, private router: Router){}
 
   completedCourses: Course[] = [];
 
@@ -26,4 +24,12 @@ export class CompletedCoursesComponent implements OnInit {
     this.completedCourses = this.academyState.courses
     .filter(c => c.examPassed);
   }
+
+  viewCertificate(course: Course): void {
+    this.router.navigate(['/academy/certificates'], {
+      state: { courseId: course.id }
+    });
+  }
+
+  
 }
