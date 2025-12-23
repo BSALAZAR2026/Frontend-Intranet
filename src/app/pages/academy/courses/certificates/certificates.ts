@@ -2,7 +2,7 @@ import { CommonModule } from "@angular/common";
 import { Component, OnInit } from "@angular/core";
 
 import { Course } from "../../../../core/models/academy.models";
-import { AcademyStateService } from "../../data/AcademyStateService";
+import { AcademyStateService } from "../../../../core/services/AcademyState.service";
 
 @Component({
   selector: 'app-certificates',

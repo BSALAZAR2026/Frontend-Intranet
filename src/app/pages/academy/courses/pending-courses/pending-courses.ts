@@ -3,7 +3,7 @@ import { CommonModule } from '@angular/common';
 import { COURSES } from '../../data/academy.data';
 import { Course } from '../../../../core/models/academy.models';
 import { SafeUrlPipe } from '../../data/safe-url.pipe';
-import { AcademyStateService } from '../../data/AcademyStateService';
+import { AcademyStateService } from '../../../../core/services/AcademyState.service';
 
 @Component({
   selector: 'app-pending-courses',
@@ -23,7 +23,8 @@ export class PendingCoursesComponent implements OnInit {
   constructor(public academyState: AcademyStateService) {}
 
   ngOnInit(): void {
-    this.pendingCourses = COURSES.filter(c => !c.examPassed);
+    this.pendingCourses = this.academyState.courses
+      .filter(c => !c.examPassed);
   }
 
   selectCourse(course: Course): void {

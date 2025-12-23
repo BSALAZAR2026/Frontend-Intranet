@@ -6,7 +6,7 @@ import { NavigationEnd, Router, RouterModule, RouterOutlet } from '@angular/rout
 import { COURSES } from '.././academy/data/academy.data';
 import { Course } from '../../core/models/academy.models';
 import { filter } from 'rxjs';
-import { AcademyStateService } from './data/AcademyStateService';
+import { AcademyStateService } from '../../core/services/AcademyState.service';
 
 @Component({
   selector: 'app-academia',
