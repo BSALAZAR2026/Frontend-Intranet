@@ -1,3 +1,24 @@
 <section class="certificates">
-    <h3>Certificados</h3>
+  <h3>Certificados</h3>
+
+  @if (certifiedCourses.length === 0) {
+    <p class="empty-text">
+      Aún no tienes certificados disponibles
+    </p>
+  }
+
+  <div class="certificate-list">
+    @for (course of certifiedCourses; track course.id) {
+      <div class="certificate-card">
+
+        <h4>{{ course.title }}</h4>
+        <p>Certificado de finalización</p>
+
+        <button class="download-btn">
+          Descargar certificado
+        </button>
+
+      </div>
+    }
+  </div>
 </section>

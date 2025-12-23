@@ -1,7 +1,8 @@
 import { CommonModule } from "@angular/common";
 import { Component, OnInit } from "@angular/core";
+
 import { Course } from "../../../../core/models/academy.models";
-import { COURSES } from "../../data/academy.data";
+import { AcademyStateService } from "../../data/AcademyStateService";
 
 @Component({
   selector: 'app-certificates',
@@ -17,7 +18,11 @@ export class CertificatesComponent implements OnInit {
 
   certifiedCourses: Course[] = [];
 
+  constructor(private academyState: AcademyStateService) {}
+
   ngOnInit(): void {
-    this.certifiedCourses = COURSES.filter(c => c.examPassed);
+    this.certifiedCourses = this.academyState.courses
+      .filter(c => c.examPassed);
   }
+
 }
