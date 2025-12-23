@@ -2,23 +2,35 @@
   <h3>Cursos pendientes</h3>
 
   <div class="course-list">
-    @for (course of pendingCourses; track course.id) {
+    @for (course of pendingCourses; track course.id; let i = $index) {
+
       <div
         class="course-card"
-        (click)="selectCourse(course)"
+        (click)="!academyState.isCourseLocked(i) && selectCourse(course)"
         [class.active]="course === selectedCourse"
+        [class.locked]="academyState.isCourseLocked(i)"
       >
         <h4>{{ course.title }}</h4>
         <p>{{ course.description }}</p>
 
-        @if (!course.examPassed) {
-          <span class="badge warning">Evaluación pendiente</span>
+        @if (!academyState.isCourseLocked(i)) {
+
+          @if (!course.examPassed) {
+            <span class="badge warning">Evaluación pendiente</span>
+          }
+
+          @if (course.examPassed) {
+            <span class="badge success">Aprobado</span>
+          }
+
+        } @else {
+          <div class="locked-overlay">
+            Completa el curso anterior
+          </div>    
         }
 
-        @if (course.examPassed) {
-          <span class="badge success">Aprobado</span>
-        }
       </div>
+
     }
   </div>
 
@@ -27,13 +39,12 @@
 
       <h4>{{ selectedCourse.title }}</h4>
 
-    
-  <div class="video-wrapper">
-    <iframe
-      [src]="selectedCourse.videoUrl | safeUrl"
-      allowfullscreen>
-    </iframe>
-  </div>
+      <div class="video-wrapper">
+        <iframe
+          [src]="selectedCourse.videoUrl | safeUrl"
+          allowfullscreen>
+        </iframe>
+      </div>
 
       @if (!selectedCourse.examPassed) {
         <a
@@ -50,5 +61,4 @@
 
     </div>
   }
-
 </section>
