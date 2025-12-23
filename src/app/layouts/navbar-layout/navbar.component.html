@@ -34,12 +34,11 @@
   </mat-menu>
 </header>
 
-<!-- Overlay -->
+
 @if (isMenuOpen) {
   <div class="menu-overlay" (click)="closeMenu($event)"></div>
 }
 
-<!-- Side Menu -->
 <nav class="side-menu">
   <a routerLink="/home" routerLinkActive="active" (click)="closeMenu()">Inicio</a>
   <a routerLink="/academy" routerLinkActive="active" (click)="closeMenu()">Academia</a>
