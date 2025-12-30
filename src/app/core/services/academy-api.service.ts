@@ -5,7 +5,7 @@ import { Course } from "../models/academy.models";
 @Injectable({ providedIn: 'root' })
 export class AcademyApiService {
 
-  private readonly baseUrl = '/api/academy';
+  private readonly baseUrl = 'https://intranet-api-gateway.onrender.com/api/academy/';
 
   constructor(private http: HttpClient) {}
 
