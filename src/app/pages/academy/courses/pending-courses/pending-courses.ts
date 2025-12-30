@@ -19,8 +19,8 @@ export class PendingCoursesComponent implements OnInit {
   constructor(public academyState: AcademyStateService) {}
 
   ngOnInit(): void {
-  this.academyState.courses$.subscribe(courses => {
-    this.pendingCourses = courses.filter(c => !c.examPassed);
+  this.academyState.courses$.subscribe((courses: Course[]) => {
+    this.pendingCourses = courses.filter((c: Course) => !c.examPassed);
 
     if (
       this.selectedCourse &&
