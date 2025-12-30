@@ -16,15 +16,22 @@ export class PendingCoursesComponent implements OnInit {
   pendingCourses: Course[] = [];
   selectedCourse: Course | null = null;
 
-  constructor(private academyState: AcademyStateService) {}
+  constructor(public academyState: AcademyStateService) {}
 
   ngOnInit(): void {
-    this.academyState.courses$.subscribe(courses => {
-      this.pendingCourses = courses.filter(c => !c.examPassed);
-    });
-  }
+  this.academyState.courses$.subscribe(courses => {
+    this.pendingCourses = courses.filter(c => !c.examPassed);
 
-  selectCourse(course: Course): void {
-    this.selectedCourse = course;
-  }
+    if (
+      this.selectedCourse &&
+      this.academyState.isCourseLockedById(this.selectedCourse.id)
+    ) {
+      this.selectedCourse = null;
+    }
+  });
+}
+
+selectCourse(course: Course): void {
+  this.selectedCourse = course;
+}
 }

@@ -1,7 +1,5 @@
 import { Injectable } from '@angular/core';
 import { Course } from '../models/academy.models';
-import { AcademyApiService } from './academy-api.service';
-import { CourseProgress } from '../models/academy-progress.model';
 import { BehaviorSubject } from 'rxjs';
 
 @Injectable({ providedIn: 'root' })
@@ -15,7 +13,8 @@ export class AcademyStateService {
   }
 
   loadCourses(courses: Course[]): void {
-    this.coursesSubject.next(courses.map(c => ({ ...c })));
+    const sorted = [...courses].sort((a, b) => a.id - b.id);
+    this.coursesSubject.next(sorted.map(c => ({ ...c })));
   }
 
   syncProgress(progress: { courseId: number; examPassed: boolean }[]): void {
@@ -34,4 +33,18 @@ export class AcademyStateService {
       )
     );
   }
+
+  isCourseLockedById(courseId: number): boolean {
+    const courses = this.courses;
+    const index = courses.findIndex(c => c.id === courseId);
+
+    if (index === -1 || index === 0) {
+      return false;
+    }
+
+    return courses
+      .slice(0, index)
+      .some(c => !c.examPassed);
+  }
 }
+
