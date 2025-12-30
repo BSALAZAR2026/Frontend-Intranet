@@ -1,6 +1,7 @@
-import { Injectable } from '@angular/core';
-import { Course } from '../models/academy.models';
-import { BehaviorSubject } from 'rxjs';
+import { Injectable } from "@angular/core";
+import { BehaviorSubject } from "rxjs";
+import { AcademyApiService } from "./academy-api.service";
+import { Course } from "../models/academy.models";
 
 @Injectable({ providedIn: 'root' })
 export class AcademyStateService {
@@ -8,41 +9,30 @@ export class AcademyStateService {
   private coursesSubject = new BehaviorSubject<Course[]>([]);
   courses$ = this.coursesSubject.asObservable();
 
+  constructor(private api: AcademyApiService) {}
+
+  loadFromBackend(): void {
+    this.api.getCourses().subscribe({
+      next: courses => {
+        const sorted = [...courses].sort((a, b) => a.order - b.order);
+        this.coursesSubject.next(sorted);
+      },
+      error: err => {
+        console.error('Error cargando cursos', err);
+        this.coursesSubject.next([]);
+      }
+    });
+  }
+
   get courses(): Course[] {
     return this.coursesSubject.value;
   }
 
-  loadCourses(courses: Course[]): void {
-    const sorted = [...courses].sort((a, b) => a.id - b.id);
-    this.coursesSubject.next(sorted.map(c => ({ ...c })));
-  }
-
-  syncProgress(progress: { courseId: number; examPassed: boolean }[]): void {
-    const updated = this.courses.map(course => {
-      const match = progress.find(p => p.courseId === course.id);
-      return match ? { ...course, examPassed: match.examPassed } : course;
-    });
-
-    this.coursesSubject.next(updated);
-  }
-
-  markPassed(courseId: number): void {
-    this.coursesSubject.next(
-      this.courses.map(c =>
-        c.id === courseId ? { ...c, examPassed: true } : c
-      )
-    );
-  }
-
   isCourseLockedById(courseId: number): boolean {
-    const courses = this.courses;
-    const index = courses.findIndex(c => c.id === courseId);
+    const index = this.courses.findIndex(c => c.id === courseId);
+    if (index <= 0) return false;
 
-    if (index === -1 || index === 0) {
-      return false;
-    }
-
-    return courses
+    return this.courses
       .slice(0, index)
       .some(c => !c.examPassed);
   }

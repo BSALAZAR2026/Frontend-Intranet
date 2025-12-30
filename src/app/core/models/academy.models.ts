@@ -3,6 +3,12 @@ export interface Course {
   title: string;
   description: string;
   videoUrl: string;
-  examUrl: string
-  examPassed: boolean
+  examUrl: string;
+  order: number;
+
+  // progreso del usuario
+  examPassed: boolean;
+  score?: number;
+  attempts?: number;
+  approvedAt?: string;
 }

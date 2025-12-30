@@ -1,16 +1,15 @@
-import { HttpClient } from '@angular/common/http';
-import { Injectable } from '@angular/core';
-import { Observable } from 'rxjs';
-import { CourseProgress } from '../models/academy-progress.model';
+import { HttpClient } from "@angular/common/http";
+import { Injectable } from "@angular/core";
+import { Course } from "../models/academy.models";
 
 @Injectable({ providedIn: 'root' })
 export class AcademyApiService {
 
-  private baseUrl = 'https://intranet-api-gateway.onrender.com/api/academy/exam';
+  private readonly baseUrl = '/api/academy';
 
   constructor(private http: HttpClient) {}
 
-  getProgress(): Observable<CourseProgress[]> {
-    return this.http.get<CourseProgress[]>(`${this.baseUrl}/progress`);
+  getCourses() {
+    return this.http.get<Course[]>(`${this.baseUrl}/courses`);
   }
 }
