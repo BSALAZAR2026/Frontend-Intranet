@@ -6,7 +6,8 @@ import { NavigationEnd, Router, RouterModule, RouterOutlet } from '@angular/rout
 import { COURSES } from '.././academy/data/academy.data';
 import { Course } from '../../core/models/academy.models';
 import { filter } from 'rxjs';
-import { AcademyStateService } from '../../core/services/AcademyState.service';
+import { AcademyStateService } from '../../core/services/academy-state.service';
+import { AcademyApiService } from '../../core/services/academy-api.service';
 
 @Component({
   selector: 'app-academia',
@@ -19,6 +20,7 @@ import { AcademyStateService } from '../../core/services/AcademyState.service';
   templateUrl: './academy.html',
   styleUrl: './academy.scss'
 })
+
 export class AcademyComponent implements OnInit {
 
   user: LoginInfo | null = null;
@@ -28,19 +30,31 @@ export class AcademyComponent implements OnInit {
   constructor(
     private sessionService: SessionService,
     private router: Router,
-    private academyState: AcademyStateService
+    private academyState: AcademyStateService,
+    private academyApi: AcademyApiService
   ) {
     this.router.events
-    .pipe(filter(event => event instanceof NavigationEnd))
-    .subscribe((event: NavigationEnd) => {
-     const url = event.urlAfterRedirects;
-     this.showIntroVideo = url === '/academy';
-  });
-
+      .pipe(filter(event => event instanceof NavigationEnd))
+      .subscribe((event: NavigationEnd) => {
+        this.showIntroVideo = event.urlAfterRedirects === '/academy';
+      });
   }
 
   ngOnInit(): void {
+    
     this.user = this.sessionService.getLoginInfo();
-    this.academyState.courses = COURSES;
+
+    this.academyState.loadCourses(COURSES);
+
+    this.academyApi.getProgress().subscribe({
+      next: progress => {
+        this.academyState.syncProgress(progress);
+        this.courses = this.academyState.courses;
+      },
+      error: err => {
+        console.error('Error cargando progreso', err);
+        this.courses = this.academyState.courses;
+      }
+    });
   }
 }
