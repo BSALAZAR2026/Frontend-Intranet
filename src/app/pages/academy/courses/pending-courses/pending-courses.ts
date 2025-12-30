@@ -39,8 +39,18 @@ export class PendingCoursesComponent implements OnInit {
   }
 
   selectCourse(course: Course): void {
-    this.selectedCourse = course;
-  }
+  this.selectedCourse = course;
+  this.academyApi.enroll(course.id).subscribe({
+    next: () => {
+    },
+    error: err => {
+      if (err?.error?.code !== 'USER_ALREADY_ENROLLED') {
+        console.error('Error al inscribirse', err);
+      }
+    }
+  });
+}
+
 
   completeCourse(course: Course): void {
   this.academyApi.approve(course.id).subscribe({
