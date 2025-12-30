@@ -55,6 +55,13 @@
         </a>
       }
 
+      <button
+  *ngIf="!selectedCourse.examPassed"
+  (click)="completeCourse(selectedCourse)">
+  Marcar como completado
+</button>
+
+
       @if (selectedCourse.examPassed) {
         <p class="success-text">Curso aprobado</p>
       }
