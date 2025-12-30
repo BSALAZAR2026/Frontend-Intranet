@@ -37,6 +37,7 @@ export class AcademyStateService {
       .slice(0, index)
       .some(c => !c.examPassed);
   }
+  
   syncProgress(progress: UserCourseProgress[]) {
   const progressMap = new Map(
     progress.map(p => [p.courseId, p])

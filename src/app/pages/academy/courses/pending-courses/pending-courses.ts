@@ -3,7 +3,6 @@ import { CommonModule } from '@angular/common';
 import { Course } from '../../../../core/models/academy.models';
 import { SafeUrlPipe } from '../../data/safe-url.pipe';
 import { AcademyStateService } from '../../../../core/services/academy-state.service';
-import { UserCourseProgress } from '../../../../core/models/user-course.model';
 import { AcademyApiService } from '../../../../core/services/academy-api.service';
 
 @Component({
@@ -38,33 +37,17 @@ export class PendingCoursesComponent implements OnInit {
     });
   }
 
-  selectCourse(course: Course): void {
-  this.selectedCourse = course;
-  this.academyApi.enroll(course.id).subscribe({
-    next: () => {
-    },
-    error: err => {
-      if (err?.error?.code !== 'USER_ALREADY_ENROLLED') {
-        console.error('Error al inscribirse', err);
-      }
-    }
-  });
-}
-
-
-  completeCourse(course: Course): void {
-  this.academyApi.approve(course.id).subscribe({
-    next: () => {
-      this.academyApi.getMyCourses().subscribe(
-        (progress: UserCourseProgress[]) => {
-          this.academyState.syncProgress(progress);
+    selectCourse(course: Course): void {
+    this.selectedCourse = course;
+    this.academyApi.enroll(course.id).subscribe({
+      next: () => {
+      },
+      error: err => {
+        if (err?.error?.code !== 'USER_ALREADY_ENROLLED') {
+          console.error('Error al inscribirse', err);
         }
-      );
-    },
-    error: (err: unknown) => {
-      console.error('Error aprobando curso', err);
-    }
-  });
-}
+      }
+    });
+  }
 }
 
