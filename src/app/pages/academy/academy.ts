@@ -38,7 +38,6 @@ export class AcademyComponent implements OnInit {
   ngOnInit(): void {
     this.user = this.sessionService.getLoginInfo();
 
-    // 🔥 Carga única desde backend
     this.academyState.loadFromBackend();
   }
 }

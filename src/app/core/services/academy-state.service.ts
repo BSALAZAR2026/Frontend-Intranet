@@ -38,18 +38,17 @@ export class AcademyStateService {
       .some(c => !c.examPassed);
   }
   
-  syncProgress(progress: UserCourseProgress[]) {
-  const progressMap = new Map(
-    progress.map(p => [p.courseId, p])
-  );
+    syncProgress(progress: UserCourseProgress[]) {
+    const progressMap = new Map(
+      progress.map(p => [p.courseId, p])
+    );
 
-  const updated = this.courses.map(course => ({
-    ...course,
-    examPassed: progressMap.get(course.id)?.examPassed ?? false
-  }));
+    const updated = this.courses.map(course => ({
+      ...course,
+      examPassed: progressMap.get(course.id)?.examPassed ?? false
+    }));
 
-  this.coursesSubject.next(updated);
-}
-
+    this.coursesSubject.next(updated);
+  }
 }
 

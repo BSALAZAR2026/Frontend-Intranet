@@ -1,34 +1,44 @@
 import { CommonModule } from "@angular/common";
-import { Component, OnInit } from "@angular/core";
+import { Component, OnInit, OnDestroy } from "@angular/core";
 import { Course } from "../../../../core/models/academy.models";
 import { AcademyStateService } from "../../../../core/services/academy-state.service";
-import { ActivatedRoute, Router } from "@angular/router";
+import { Router } from "@angular/router";
+import { Subject, takeUntil } from "rxjs";
 
 @Component({
   selector: 'app-completed-courses',
   standalone: true,
-  imports: [
-    CommonModule
-],
+  imports: [CommonModule],
   templateUrl: './completed-courses.html',
   styleUrls: ['./completed-courses.scss']
 })
-
-export class CompletedCoursesComponent implements OnInit {
-
-  constructor(private academyState: AcademyStateService, private router: Router, private route: ActivatedRoute){}
+export class CompletedCoursesComponent implements OnInit, OnDestroy {
 
   completedCourses: Course[] = [];
+  private destroy$ = new Subject<void>();
+
+  constructor(
+    private academyState: AcademyStateService,
+    private router: Router
+  ) {}
 
   ngOnInit(): void {
-    this.completedCourses = this.academyState.courses
-    .filter(c => c.examPassed);
+    this.academyState.courses$
+      .pipe(takeUntil(this.destroy$))
+      .subscribe(courses => {
+        this.completedCourses = courses.filter(c => c.examPassed);
+      });
   }
 
   viewCertificate(course: Course): void {
-    this.router.navigate(['/academy/certificates'], {
-      state: { courseId: course.id }
-    });
+    this.router.navigate(
+      ['/academy/certificates'],
+      { state: { courseId: course.id } }
+    );
   }
 
+  ngOnDestroy(): void {
+    this.destroy$.next();
+    this.destroy$.complete();
+  }
 }
