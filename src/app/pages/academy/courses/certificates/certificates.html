@@ -1,25 +1,31 @@
 <section class="certificates">
-  <h3>Certificados</h3>
 
-  @if (certifiedCourses.length === 0) {
-    <p class="empty-text">
-      Aún no tienes certificados disponibles
+  <h2>Mis certificados</h2>
+
+  @if (!loading && certificates.length === 0) {
+    <p>
+      Aún no tienes certificados disponibles.
     </p>
   }
 
-  <div class="certificate-list">
-    @for (course of certifiedCourses; track course.id) {
-      <div class="certificate-card">
+  @if (certificates.length > 0) {
+    <div class="grid">
+      @for (cert of certificates; track cert.courseId) {
+        <div class="card">
 
-        <h4>{{ course.title }}</h4>
-        <p>Certificado de finalización</p>
+          <h3>{{ cert.courseTitle }}</h3>
 
-        <button
-          class="download-btn"
-          (click)="downloadCertificate(course)">
-          Descargar certificado
-        </button>
-      </div>
-    }
-  </div>
+          <p class="date">
+            Obtenido el {{ cert.issuedAt }}
+          </p>
+
+          <button (click)="openCertificate(cert.courseId)">
+            Ver certificado
+          </button>
+
+        </div>
+      }
+    </div>
+  }
+
 </section>

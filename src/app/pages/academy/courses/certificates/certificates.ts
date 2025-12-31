@@ -1,8 +1,7 @@
 import { CommonModule } from "@angular/common";
 import { Component, OnInit } from "@angular/core";
-
-import { Course } from "../../../../core/models/academy.models";
-import { AcademyStateService } from "../../../../core/services/academy-state.service";
+import { Certificate } from "../../../../core/models/certificate.model";
+import { CertificateService } from "../../../../core/services/certificate.service";
 
 @Component({
   selector: 'app-certificates',
@@ -16,22 +15,22 @@ import { AcademyStateService } from "../../../../core/services/academy-state.ser
 
 export class CertificatesComponent implements OnInit {
 
-  certifiedCourses: Course[] = [];
+ certificates: Certificate[] = [];
+  loading = true;
 
-  constructor(private academyState: AcademyStateService) {}
+  constructor(private certificateService: CertificateService) {}
 
   ngOnInit(): void {
-    const courseId = history.state?.courseId;
-
-    const passedCourses = this.academyState.courses
-      .filter(c => c.examPassed);
-
-    this.certifiedCourses = courseId
-      ? passedCourses.filter(c => c.id === courseId)
-      : passedCourses;
+    this.certificateService.getMyCertificates().subscribe({
+      next: (data) => {
+        this.certificates = data;
+        this.loading = false;
+      },
+      error: () => this.loading = false
+    });
   }
 
-  downloadCertificate(course: Course): void {
-    alert(`Descargando certificado de: ${course.title}`);
+  openCertificate(courseId: number): void {
+    this.certificateService.openCertificate(courseId);
   }
 }
