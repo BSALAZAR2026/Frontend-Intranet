@@ -1,14 +1,13 @@
-import { HttpClient } from '@angular/common/http';
-import { Injectable } from '@angular/core';
-import { Observable } from 'rxjs';
-import { Certificate } from '../models/certificate.model';
+import { HttpClient } from "@angular/common/http";
+import { Injectable } from "@angular/core";
+import { Observable } from "rxjs";
+import { Certificate } from "../models/certificate.model";
 
-@Injectable({
-  providedIn: 'root'
-})
+@Injectable({ providedIn: 'root' })
 export class CertificateService {
 
-  private baseUrl = '/api/academy/certificates';
+  private readonly baseUrl =
+    'https://intranet-api-gateway.onrender.com/api/academy/certificates';
 
   constructor(private http: HttpClient) {}
 
@@ -17,6 +16,7 @@ export class CertificateService {
   }
 
   openCertificate(courseId: number): void {
-    window.open(`${this.baseUrl}/${courseId}`, '_blank');
+    const url = `${this.baseUrl}/${courseId}`;
+    window.open(url, '_blank');
   }
 }
