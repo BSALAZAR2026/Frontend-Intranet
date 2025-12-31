@@ -12,11 +12,26 @@ export class AcademyStateService {
 
   constructor(private api: AcademyApiService) {}
 
-  loadFromBackend(): void {
+    loadFromBackend(): void {
     this.api.getCourses().subscribe({
       next: courses => {
         const sorted = [...courses].sort((a, b) => a.order - b.order);
-        this.coursesSubject.next(sorted);
+
+        this.api.getMyCourses().subscribe({
+          next: progress => {
+            const progressMap = new Map(
+              progress.map(p => [p.courseId, p])
+            );
+
+            const merged = sorted.map(course => ({
+              ...course,
+              examPassed: progressMap.get(course.id)?.examPassed ?? false
+            }));
+
+            this.coursesSubject.next(merged);
+          },
+          error: () => this.coursesSubject.next(sorted)
+        });
       },
       error: err => {
         console.error('Error cargando cursos', err);
@@ -24,6 +39,7 @@ export class AcademyStateService {
       }
     });
   }
+
 
   get courses(): Course[] {
     return this.coursesSubject.value;
