@@ -6,7 +6,7 @@ export interface Course {
   examUrl: string;
   order: number;
 
-  // progreso del usuario
+  isEnrolled: boolean;
   examPassed: boolean;
   score?: number;
   attempts?: number;

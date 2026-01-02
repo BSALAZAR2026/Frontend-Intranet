@@ -48,21 +48,24 @@
       </div>
       @if (selectedCourse && !selectedCourse.examPassed) {
         <div class="course-actions">
-          @if (!hasEnrolled) {
+
+          @if (!selectedCourse.isEnrolled) {
             <button
               class="btn"
               (click)="enrollSelectedCourse()">
               Inscribirse al curso
             </button>
           }
-          @if (hasEnrolled) {
+
+          @if (selectedCourse.isEnrolled) {
             <a
               class="exam-btn"
               [href]="examUrlWithUser"
               target="_blank">
               Presentar evaluación
-          </a>
+            </a>
           }
+
         </div>
       }
     </div>
