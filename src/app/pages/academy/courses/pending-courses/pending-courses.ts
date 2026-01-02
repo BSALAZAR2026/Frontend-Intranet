@@ -32,6 +32,8 @@ export class PendingCoursesComponent implements OnInit, OnDestroy {
       .pipe(takeUntil(this.destroy$))
       .subscribe((courses: Course[]) => {
 
+        console.log("CURSOS", courses);
+        
         this.pendingCourses = courses.filter(c => !c.examPassed);
 
         if (this.selectedCourse) {
@@ -46,6 +48,7 @@ export class PendingCoursesComponent implements OnInit, OnDestroy {
           this.selectedCourse &&
           this.academyState.isCourseLockedById(this.selectedCourse.id)
         ) {
+          
           this.selectedCourse = null;
         }
       });
