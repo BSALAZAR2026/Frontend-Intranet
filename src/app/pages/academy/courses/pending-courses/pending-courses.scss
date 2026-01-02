@@ -105,6 +105,25 @@
   }
 }
 
+.btn{
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: .6rem;
+  margin: 1rem 0rem;
+  padding: .9rem 1.8rem;
+  border-radius: 12px;
+  background: var(--color-secundary);
+  color: #fff;
+  font-weight: 700;
+  text-decoration: none;
+  transition: all .2s ease;
+
+  &:hover {
+    filter: brightness(1.1);
+    transform: translateY(-2px);
+  }
+}
 .exam-btn {
   display: inline-flex;
   align-items: center;
