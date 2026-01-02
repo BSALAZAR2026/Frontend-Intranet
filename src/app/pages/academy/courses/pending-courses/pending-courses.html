@@ -46,26 +46,25 @@
           allowfullscreen>
         </iframe>
       </div>
-
-       @if (!selectedCourse.examPassed) {
-
-        <button
-          class="btn"
-          (click)="enrollSelectedCourse()">
-          Inscribirse al curso
-        </button>
-        <a
-          class="exam-btn"
-          [href]="selectedCourse.examUrl"
-          target="_blank">
-          Presentar evaluación
-        </a>
+      @if (selectedCourse && !selectedCourse.examPassed) {
+        <div class="course-actions">
+          @if (!hasEnrolled) {
+            <button
+              class="btn"
+              (click)="enrollSelectedCourse()">
+              Inscribirse al curso
+            </button>
+          }
+          @if (hasEnrolled) {
+            <a
+              class="exam-btn"
+              [href]="selectedCourse.examUrl"
+              target="_blank">
+              Presentar evaluación
+            </a>
+          }
+        </div>
       }
-      
-      @if (selectedCourse.examPassed) {
-        <p class="success-text">Curso aprobado</p>
-      }
-
     </div>
   }
 </section>

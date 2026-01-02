@@ -18,6 +18,8 @@ export class PendingCoursesComponent implements OnInit, OnDestroy {
   pendingCourses: Course[] = [];
   selectedCourse: Course | null = null;
 
+  hasEnrolled = false;
+
   private destroy$ = new Subject<void>();
 
   constructor(
@@ -43,6 +45,7 @@ export class PendingCoursesComponent implements OnInit, OnDestroy {
   selectCourse(course: Course): void {
     if (this.academyState.isCourseLockedById(course.id)) return;
     this.selectedCourse = course;
+    this.hasEnrolled = false;
   }
 
   enrollSelectedCourse(): void {
@@ -50,10 +53,13 @@ export class PendingCoursesComponent implements OnInit, OnDestroy {
 
     this.academyApi.enroll(this.selectedCourse.id).subscribe({
       next: () => {
+        this.hasEnrolled = true;
         this.academyState.loadFromBackend();
       },
       error: err => {
-        if (err?.error?.code !== 'USER_ALREADY_ENROLLED') {
+        if (err?.error?.code === 'USER_ALREADY_ENROLLED') {
+          this.hasEnrolled = true;
+        } else {
           console.error('Error al inscribirse', err);
         }
       }
