@@ -31,7 +31,16 @@ export class PendingCoursesComponent implements OnInit, OnDestroy {
     this.academyState.courses$
       .pipe(takeUntil(this.destroy$))
       .subscribe((courses: Course[]) => {
+
         this.pendingCourses = courses.filter(c => !c.examPassed);
+
+        if (this.selectedCourse) {
+          const updated = courses.find(
+            c => c.id === this.selectedCourse!.id
+          );
+
+          this.selectedCourse = updated ?? null;
+        }
 
         if (
           this.selectedCourse &&
@@ -41,6 +50,7 @@ export class PendingCoursesComponent implements OnInit, OnDestroy {
         }
       });
   }
+
 
   selectCourse(course: Course): void {
     if (this.academyState.isCourseLockedById(course.id)) return;
