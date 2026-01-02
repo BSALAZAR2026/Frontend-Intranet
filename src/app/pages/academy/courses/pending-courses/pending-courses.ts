@@ -1,9 +1,10 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, OnDestroy } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { Course } from '../../../../core/models/academy.models';
 import { SafeUrlPipe } from '../../data/safe-url.pipe';
 import { AcademyStateService } from '../../../../core/services/academy-state.service';
 import { AcademyApiService } from '../../../../core/services/academy-api.service';
+import { Subject, takeUntil } from 'rxjs';
 
 @Component({
   selector: 'app-pending-courses',
@@ -12,10 +13,12 @@ import { AcademyApiService } from '../../../../core/services/academy-api.service
   templateUrl: './pending-courses.html',
   styleUrls: ['./pending-courses.scss']
 })
-export class PendingCoursesComponent implements OnInit {
+export class PendingCoursesComponent implements OnInit, OnDestroy {
 
   pendingCourses: Course[] = [];
   selectedCourse: Course | null = null;
+
+  private destroy$ = new Subject<void>();
 
   constructor(
     public academyState: AcademyStateService,
@@ -23,24 +26,31 @@ export class PendingCoursesComponent implements OnInit {
   ) {}
 
   ngOnInit(): void {
-    this.academyState.courses$.subscribe((courses: Course[]) => {
-      this.pendingCourses = courses.filter(
-        (c: Course) => !c.examPassed
-      );
+    this.academyState.courses$
+      .pipe(takeUntil(this.destroy$))
+      .subscribe((courses: Course[]) => {
+        this.pendingCourses = courses.filter(c => !c.examPassed);
 
-      if (
-        this.selectedCourse &&
-        this.academyState.isCourseLockedById(this.selectedCourse.id)
-      ) {
-        this.selectedCourse = null;
-      }
-    });
+        if (
+          this.selectedCourse &&
+          this.academyState.isCourseLockedById(this.selectedCourse.id)
+        ) {
+          this.selectedCourse = null;
+        }
+      });
   }
 
-    selectCourse(course: Course): void {
+  selectCourse(course: Course): void {
+    if (this.academyState.isCourseLockedById(course.id)) return;
     this.selectedCourse = course;
-    this.academyApi.enroll(course.id).subscribe({
+  }
+
+  enrollSelectedCourse(): void {
+    if (!this.selectedCourse) return;
+
+    this.academyApi.enroll(this.selectedCourse.id).subscribe({
       next: () => {
+        this.academyState.loadFromBackend();
       },
       error: err => {
         if (err?.error?.code !== 'USER_ALREADY_ENROLLED') {
@@ -49,5 +59,9 @@ export class PendingCoursesComponent implements OnInit {
       }
     });
   }
-}
 
+  ngOnDestroy(): void {
+    this.destroy$.next();
+    this.destroy$.complete();
+  }
+}

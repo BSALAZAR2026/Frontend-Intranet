@@ -4,12 +4,13 @@
   <div class="course-list">
     @for (course of pendingCourses; track course.id; let i = $index) {
 
-      <div
-        class="course-card"
-        (click)="!academyState.isCourseLockedById(course.id) && selectCourse(course)"
-        [class.active]="course === selectedCourse"
-        [class.locked]="academyState.isCourseLockedById(course.id)"
-      >
+              <div
+          class="course-card"
+          (click)="selectCourse(course)"
+          [class.active]="course === selectedCourse"
+          [class.locked]="academyState.isCourseLockedById(course.id)"
+        >
+
         <h4>{{ course.title }}</h4>
         <p>{{ course.description }}</p>
 
@@ -46,7 +47,13 @@
         </iframe>
       </div>
 
-      @if (!selectedCourse.examPassed) {
+       @if (!selectedCourse.examPassed) {
+
+        <button
+          class="exam-btn"
+          (click)="enrollSelectedCourse()">
+          Inscribirse al curso
+        </button>
         <a
           class="exam-btn"
           [href]="selectedCourse.examUrl"
