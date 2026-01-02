@@ -1,4 +1,5 @@
 export interface LoginInfo {
+  id?: string;
   token?: string;
   firstName: string;
   lastName: string;

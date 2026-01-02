@@ -5,6 +5,7 @@ import { SafeUrlPipe } from '../../data/safe-url.pipe';
 import { AcademyStateService } from '../../../../core/services/academy-state.service';
 import { AcademyApiService } from '../../../../core/services/academy-api.service';
 import { Subject, takeUntil } from 'rxjs';
+import { SessionService } from '../../../../core/services/session.service';
 
 @Component({
   selector: 'app-pending-courses',
@@ -24,7 +25,8 @@ export class PendingCoursesComponent implements OnInit, OnDestroy {
 
   constructor(
     public academyState: AcademyStateService,
-    private academyApi: AcademyApiService
+    private academyApi: AcademyApiService,
+    private sessionService: SessionService
   ) {}
 
   ngOnInit(): void {
@@ -65,6 +67,14 @@ export class PendingCoursesComponent implements OnInit, OnDestroy {
       }
     });
   }
+
+    get examUrlWithUser(): string {
+    if (!this.selectedCourse) return '';
+
+    const userId = this.sessionService.getLoginInfo()?.id;
+    return `${this.selectedCourse.examUrl}?userId=${userId}`;
+  }
+
 
   ngOnDestroy(): void {
     this.destroy$.next();
