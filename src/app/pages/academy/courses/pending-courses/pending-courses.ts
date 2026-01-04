@@ -81,7 +81,7 @@ export class PendingCoursesComponent implements OnInit, OnDestroy {
     if (!this.selectedCourse) return '';
 
     const userId = this.sessionService.getLoginInfo()?.id;
-    return `${this.selectedCourse.examUrl}?userId=${userId}`;
+    return `${this.selectedCourse.examUrl}`;
   }
 
 
