@@ -4,7 +4,7 @@
   <div class="course-list">
     @for (course of pendingCourses; track course.id; let i = $index) {
 
-              <div
+        <div
           class="course-card"
           (click)="selectCourse(course)"
           [class.active]="course === selectedCourse"
