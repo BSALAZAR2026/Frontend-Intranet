@@ -11,16 +11,10 @@
 }
 
 .course-list {
-  display: flex;
-  flex-direction: row;
-  gap: 1.5rem;
-
-  overflow-x: auto;
-  padding: 0 0 1rem 0;
-
-  scroll-behavior: smooth;
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+  gap: 1.8rem;
 }
-
 
 .course-card {
   position: relative;
