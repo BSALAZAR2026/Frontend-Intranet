@@ -25,8 +25,6 @@ export class CertificatesComponent implements OnInit, OnDestroy {
       .pipe(takeUntil(this.destroy$))
       .subscribe({
         next: data => {
-          console.log('CERTIFICADOS BACK ->', data);
-          
           this.certificates = data;
           this.loading = false;
         },
