@@ -29,6 +29,7 @@
   box-shadow: 0 10px 25px rgba(0,0,0,.08);
   border: 2px solid #bbf7d0;
   transition: transform .25s ease, box-shadow .25s ease;
+  margin: 0 1rem;
 
   &:hover {
     transform: translateY(-6px);
