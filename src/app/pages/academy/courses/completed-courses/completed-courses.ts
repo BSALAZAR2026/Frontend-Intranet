@@ -1,9 +1,9 @@
-import { CommonModule } from "@angular/common";
-import { Component, OnInit, OnDestroy } from "@angular/core";
-import { Course } from "../../../../core/models/academy.models";
-import { AcademyStateService } from "../../../../core/services/academy-state.service";
-import { Router } from "@angular/router";
-import { Subject, takeUntil } from "rxjs";
+import { CommonModule } from '@angular/common';
+import { Component, OnInit, OnDestroy } from '@angular/core';
+import { Course } from '../../../../core/models/academy.models';
+import { AcademyStateService } from '../../../../core/services/academy-state.service';
+import { Router } from '@angular/router';
+import { Subject, takeUntil } from 'rxjs';
 
 @Component({
   selector: 'app-completed-courses',
@@ -33,7 +33,7 @@ export class CompletedCoursesComponent implements OnInit, OnDestroy {
   viewCertificate(course: Course): void {
     this.router.navigate(
       ['/academy/certificates'],
-      { state: { courseId: course.id } }
+      { queryParams: { courseId: course.id } }
     );
   }
 
