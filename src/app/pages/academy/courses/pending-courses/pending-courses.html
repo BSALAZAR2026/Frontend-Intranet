@@ -1,73 +1,63 @@
 <section class="pending-courses">
+
   <h3>Cursos pendientes</h3>
 
-  <div class="course-list">
-    @for (course of pendingCourses; track course.id; let i = $index) {
+  @if (pendingCourses.length > 0) {
 
-        <div
-          class="course-card"
-          (click)="selectCourse(course)"
-          [class.active]="course === selectedCourse"
-          [class.locked]="academyState.isCourseLockedById(course.id)"
-        >
+    <div class="pending-layout">
 
-        <h4>{{ course.title }}</h4>
-        <p>{{ course.description }}</p>
+      <div class="course-list">
+        @for (course of pendingCourses; track course.id) {
+          <div
+            class="course-card"
+            (click)="selectCourse(course)"
+            [class.active]="course === selectedCourse"
+            [class.locked]="academyState.isCourseLockedById(course.id)"
+          >
+            <h4>{{ course.title }}</h4>
+            <p>{{ course.description }}</p>
 
-        @if (!academyState.isCourseLockedById(course.id)) {
-
-          @if (!course.examPassed) {
-            <span class="badge warning">Evaluación pendiente</span>
-          }
-
-          @if (course.examPassed) {
-            <span class="badge success">Aprobado</span>
-          }
-
-        } @else {
-          <div class="locked-overlay">
-            Completa el curso anterior
-          </div>    
+            @if (!academyState.isCourseLockedById(course.id)) {
+              <span class="badge warning">Evaluación pendiente</span>
+            } @else {
+              <span class="badge warning">Completa el curso anterior</span>
+            }
+          </div>
         }
-
       </div>
 
-    }
-  </div>
+      @if (selectedCourse) {
+        <div class="course-detail">
+          <h4>{{ selectedCourse.title }}</h4>
 
-  @if (selectedCourse) {
-    <div class="course-detail">
+          <div class="video-wrapper">
+            <iframe
+              [src]="selectedCourse.videoUrl | safeUrl"
+              allowfullscreen>
+            </iframe>
+          </div>
 
-      <h4>{{ selectedCourse.title }}</h4>
+          @if (!selectedCourse.examPassed) {
+            <div class="course-actions">
 
-      <div class="video-wrapper">
-        <iframe
-          [src]="selectedCourse.videoUrl | safeUrl"
-          allowfullscreen>
-        </iframe>
-      </div>
-      @if (selectedCourse && !selectedCourse.examPassed) {
-        <div class="course-actions">
+              @if (!selectedCourse.isEnrolled) {
+                <button class="btn" (click)="enrollSelectedCourse()">
+                  Inscribirse al curso
+                </button>
+              }
 
-          @if (!selectedCourse.isEnrolled) {
-            <button
-              class="btn"
-              (click)="enrollSelectedCourse()">
-              Inscribirse al curso
-            </button>
+              @if (selectedCourse.isEnrolled) {
+                <a class="exam-btn" [href]="examUrl" target="_blank">
+                  Presentar evaluación
+                </a>
+              }
+
+            </div>
           }
-
-          @if (selectedCourse.isEnrolled) {
-            <a
-              class="exam-btn"
-              [href]="examUrl"
-              target="_blank">
-              Presentar evaluación
-            </a>
-          }
-
         </div>
       }
+
     </div>
   }
+
 </section>
