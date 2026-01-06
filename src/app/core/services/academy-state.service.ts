@@ -26,9 +26,12 @@ export class AcademyStateService {
             const merged = sorted.map(course => {
             const userProgress = progressMap.get(course.id);
 
-            return {
+                      return {
               ...course,
               examPassed: userProgress?.examPassed ?? false,
+              approvedAt: userProgress?.approvedAt,
+              score: userProgress?.score,
+              attempts: userProgress?.attemps,
               isEnrolled: !!userProgress
             };
           });
