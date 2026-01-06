@@ -32,8 +32,7 @@ export class CompletedCoursesComponent implements OnInit, OnDestroy {
 
   viewCertificate(course: Course): void {
     this.router.navigate(
-      ['/academy/certificates'],
-      { queryParams: { courseId: course.id } }
+      ['/academy/certificates']
     );
   }
 
