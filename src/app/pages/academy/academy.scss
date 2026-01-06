@@ -1,8 +1,10 @@
 .academy-content {
   display: flex;
   justify-content: center;
-  align-items: flex-start;
+  align-items: stretch;
   width: 100%;
+  flex-wrap: nowrap;
+  flex-direction: column;
 }
 
 .academy-container {
