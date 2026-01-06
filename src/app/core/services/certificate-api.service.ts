@@ -16,7 +16,12 @@ export class CertificateService {
   }
 
   openCertificate(courseId: number): void {
-    const url = `${this.baseUrl}/${courseId}`;
-    window.open(url, '_blank');
+    this.http.get(
+      `${this.baseUrl}/${courseId}`,
+      { responseType: 'blob' }
+    ).subscribe(blob => {
+      const url = URL.createObjectURL(blob);
+      window.open(url, '_blank');
+    });
   }
 }
