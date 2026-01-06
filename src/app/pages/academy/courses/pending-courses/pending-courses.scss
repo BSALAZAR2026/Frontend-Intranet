@@ -1,7 +1,15 @@
 .pending-courses {
   width: 100%;
   max-width: 1200px;
+  margin: 0 auto;
 }
+
+.pending-layout {
+  display: flex;
+  flex-direction: column;
+  gap: 3rem;
+}
+
 
 .pending-courses h3 {
   font-size: 1.6rem;
@@ -12,8 +20,9 @@
 
 .course-list {
   display: grid;
-  grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+  grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
   gap: 1.8rem;
+  width: 100%;
 }
 
 .course-card {
