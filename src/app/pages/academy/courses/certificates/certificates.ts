@@ -3,7 +3,6 @@ import { Component, OnInit, OnDestroy } from '@angular/core';
 import { Certificate } from '../../../../core/models/certificate.model';
 import { CertificateService } from '../../../../core/services/certificate-api.service';
 import { Subject, takeUntil } from 'rxjs';
-import { ActivatedRoute } from '@angular/router';
 
 @Component({
   selector: 'app-certificates',
@@ -19,40 +18,10 @@ export class CertificatesComponent implements OnInit, OnDestroy {
 
   private destroy$ = new Subject<void>();
 
-  constructor(
-    private certificateService: CertificateService,
-    private route: ActivatedRoute
-  ) {}
+  constructor(private certificateService: CertificateService) {}
 
   ngOnInit(): void {
-    this.route.queryParams
-      .pipe(takeUntil(this.destroy$))
-      .subscribe(params => {
-        const courseId = Number(params['courseId']);
-
-        if (courseId) {
-          this.generateAndOpenCertificate(courseId);
-        } else {
-          this.loadCertificates();
-        }
-      });
-  }
-
-  generateAndOpenCertificate(courseId: number): void {
-    this.loading = true;
-
-    this.certificateService.generateCertificate(courseId)
-      .pipe(takeUntil(this.destroy$))
-      .subscribe({
-        next: () => {
-          this.loading = false;
-          this.certificateService.openCertificate(courseId);
-          this.loadCertificates();
-        },
-        error: () => {
-          this.loading = false;
-        }
-      });
+    this.loadCertificates();
   }
 
   loadCertificates(): void {

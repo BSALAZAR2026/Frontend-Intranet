@@ -4,6 +4,7 @@ import { Course } from '../../../../core/models/academy.models';
 import { AcademyStateService } from '../../../../core/services/academy-state.service';
 import { Router } from '@angular/router';
 import { Subject, takeUntil } from 'rxjs';
+import { CertificateService } from '../../../../core/services/certificate-api.service';
 
 @Component({
   selector: 'app-completed-courses',
@@ -19,7 +20,8 @@ export class CompletedCoursesComponent implements OnInit, OnDestroy {
 
   constructor(
     private academyState: AcademyStateService,
-    private router: Router
+    private router: Router,
+    private certificateService: CertificateService
   ) {}
 
   ngOnInit(): void {
@@ -31,10 +33,9 @@ export class CompletedCoursesComponent implements OnInit, OnDestroy {
   }
 
   viewCertificate(course: Course): void {
-    this.router.navigate(
-      ['/academy/certificates']
-    );
+    this.certificateService.openCertificate(course.id);
   }
+
 
   ngOnDestroy(): void {
     this.destroy$.next();

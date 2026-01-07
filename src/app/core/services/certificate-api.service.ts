@@ -15,10 +15,6 @@ export class CertificateService {
     return this.http.get<Certificate[]>(`${this.baseUrl}/me`);
   }
 
-  generateCertificate(courseId: number): Observable<void> {
-    return this.http.post<void>(`${this.baseUrl}/${courseId}`, null);
-  }
-
   openCertificate(courseId: number): void {
     this.http.get(
       `${this.baseUrl}/${courseId}`,
