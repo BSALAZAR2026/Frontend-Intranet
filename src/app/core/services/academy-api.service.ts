@@ -10,7 +10,7 @@ export class AcademyApiService {
   private readonly baseUrl =
     'https://academy-service-v1a5.onrender.com/api/academy';
 
-  constructor(private http: HttpClient) {}
+  constructor(private http: HttpClient) { }
 
   getCourses(): Observable<Course[]> {
     return this.http.get<Course[]>(`${this.baseUrl}/courses`);
