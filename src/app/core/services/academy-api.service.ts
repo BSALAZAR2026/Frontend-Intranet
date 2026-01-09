@@ -8,7 +8,7 @@ import { Observable } from "rxjs";
 export class AcademyApiService {
 
   private readonly baseUrl =
-    'https://intranet-api-gateway.onrender.com/api/academy';
+    'https://academy-service-v1a5.onrender.com/api/academy';
 
   constructor(private http: HttpClient) {}
 
