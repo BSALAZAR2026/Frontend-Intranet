@@ -7,7 +7,7 @@ import { Certificate } from '../models/certificate.model';
 export class CertificateService {
 
   private readonly baseUrl =
-    'https://intranet-api-gateway.onrender.com/api/academy/certificates';
+    'https://api-gateway-v121.onrender.com/api/academy/certificates';
 
   constructor(private http: HttpClient) {}
 
