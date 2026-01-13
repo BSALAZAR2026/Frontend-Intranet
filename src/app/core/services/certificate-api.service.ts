@@ -2,12 +2,13 @@ import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
 import { Certificate } from '../models/certificate.model';
+import { API_ENDPOINTS } from '../constants/api.constants';
 
 @Injectable({ providedIn: 'root' })
 export class CertificateService {
 
   private readonly baseUrl =
-    'https://api-gateway-v121.onrender.com/api/academy/certificates';
+    `${API_ENDPOINTS.certificates}`;
 
   constructor(private http: HttpClient) {}
 
