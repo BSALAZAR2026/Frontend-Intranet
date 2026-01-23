@@ -49,7 +49,7 @@ export class DirectoryDialogComponent implements OnInit {
   }
 
   private loadUsers() {
-    this.userService.getAllUsers().subscribe({
+    this.userService.getAllAdminUsers().subscribe({
       next: (users) => {
         this.employees = users.map((u) => ({
           ...u,

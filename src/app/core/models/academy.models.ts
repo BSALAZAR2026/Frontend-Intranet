@@ -9,6 +9,6 @@ export interface Course {
   isEnrolled: boolean;
   examPassed: boolean;
   score?: number;
-  attempts?: number;
+  attemps?: number;
   approvedAt?: string;
 }

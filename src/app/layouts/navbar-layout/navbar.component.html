@@ -47,10 +47,10 @@
   <a routerLink="/profile" routerLinkActive="active" (click)="closeMenu()">Perfil</a>
   @if (['ROLE_ADMIN'].includes(role!)) {
     <a
-      routerLink="/change-password"
+      routerLink="/admin"
       routerLinkActive="active"
       (click)="closeMenu()">
-      Cambio de Contraseña
+      Administrador
     </a>
     }
 </nav>

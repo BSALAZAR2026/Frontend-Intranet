@@ -1,5 +1,5 @@
 export const environment = {
-  production: true,
-  apiGatewayUrl: 'https://api-gateway-v121.onrender.com',
-  eurekaUrl: 'https://intranet-eureka-server.onrender.com/eureka'
+  production: false,
+  apiGatewayUrl: 'http://localhost:8080',
+  eurekaUrl: 'http://localhost:8761/eureka'
 };

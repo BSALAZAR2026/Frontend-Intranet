@@ -31,7 +31,7 @@ export class AcademyStateService {
               examPassed: userProgress?.examPassed ?? false,
               approvedAt: userProgress?.approvedAt,
               score: userProgress?.score,
-              attempts: userProgress?.attemps,
+              attempts: userProgress?.attempts,
               isEnrolled: !!userProgress
             };
           });

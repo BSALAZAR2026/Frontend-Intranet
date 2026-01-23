@@ -4,7 +4,7 @@ import { Observable, of } from 'rxjs';
 import { LoginCredentials } from '../../pages/login/login';
 import { API_ENDPOINTS } from '../constants/api.constants';
 import { isPlatformBrowser } from '@angular/common';
-import { PasswordCredentials } from '../../pages/change-password/change-password';
+import { PasswordCredentials } from '../../pages/admin/change-password/change-password';
 
 @Injectable({ providedIn: 'root' })
 export class AuthService {

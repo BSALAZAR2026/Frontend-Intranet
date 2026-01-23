@@ -7,22 +7,45 @@
     </p>
   }
 
-  <div class="course-list">
-    @for (course of completedCourses; track course.id) {
-      <div class="course-card completed">
+  <div class="completed-layout">
 
-        <div class="card-header">
-          <h4>{{ course.title }}</h4>
-          <span class="badge success">Aprobado</span>
+    <div class="course-list">
+      @for (course of completedCourses; track course.id) {
+        <div class="course-card completed">
+
+          <div class="card-header">
+            <h4>{{ course.title }}</h4>
+            <span class="badge success">Aprobado</span>
+          </div>
+
+          <p>{{ course.description }}</p>
+
+          <div class="actions">
+            <button class="certificate-btn" (click)="viewCertificate(course)">
+              Ver certificado
+            </button>
+
+            <button class="replay-btn" (click)="replayCourse(course)">
+              Volver a ver curso
+            </button>
+          </div>
+
         </div>
+      }
+    </div>
 
-        <p>{{ course.description }}</p>
+    @if (selectedCourse) {
+      <div class="course-detail">
+        <h4>{{ selectedCourse.title }}</h4>
 
-        <button class="certificate-btn" (click)="viewCertificate(course)">
-          Ver certificado
-        </button>
-
+        <div class="video-wrapper">
+          <iframe
+            [src]="selectedCourse.videoUrl | safeUrl"
+            allowfullscreen>
+          </iframe>
+        </div>
       </div>
     }
+
   </div>
 </section>

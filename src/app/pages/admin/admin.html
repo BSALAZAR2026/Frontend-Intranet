@@ -1,0 +1,51 @@
+<div class="admin-layout">
+
+  @if (menuOpen) {
+    <div class="admin-overlay" (click)="toggleMenu()"></div>
+  }
+
+  <aside class="admin-sidebar" [class.open]="menuOpen">
+    <div class="admin-brand">
+      <img src="/assets/images/MoleculaYLetra.png" class="admin-logo">
+      <span>Administrador</span>
+    </div>
+
+    <nav class="admin-menu">
+      <a routerLink="/admin/users" routerLinkActive="active" (click)="closeMenu()">
+        <mat-icon>group</mat-icon>
+        <span>Usuarios</span>
+      </a>
+
+      <a routerLink="/admin/create-user" routerLinkActive="active" (click)="closeMenu()">
+        <mat-icon>person_add</mat-icon>
+        <span>Crear usuario</span>
+      </a>
+
+      <a routerLink="/admin/change-email" routerLinkActive="active" (click)="closeMenu()">
+        <mat-icon>edit</mat-icon>
+        <span>Cambiar email usuario</span>
+      </a>
+
+      <a routerLink="/admin/change-password" routerLinkActive="active" (click)="closeMenu()">
+        <mat-icon>lock</mat-icon>
+        <span>Cambiar contraseña</span>
+      </a>
+
+        <a routerLink="/admin/desactivate-user" routerLinkActive="active" (click)="closeMenu()">
+            <mat-icon>person_off</mat-icon>
+            <span>Desactivar usuario</span>
+        </a>
+    </nav>
+  </aside>
+
+  <main class="admin-content">
+
+    <div class="admin-mobile-header">
+      <button class="menu-btn" (click)="toggleMenu()">
+        <mat-icon>menu</mat-icon>
+      </button>
+      <span>Administrador</span>
+    </div>
+    <router-outlet></router-outlet>
+  </main>
+</div>

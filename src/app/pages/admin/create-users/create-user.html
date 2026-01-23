@@ -1,0 +1,88 @@
+<div class="create-user-container">
+
+  <div class="header">
+    <h4>Crear nuevo usuario</h4>
+    <p>Registro de usuarios administrativos</p>
+  </div>
+
+  <form [formGroup]="form" (ngSubmit)="submit()">
+
+    <div class="form-grid">
+
+      <div class="field">
+        <label>Nombre</label>
+        <input type="text" formControlName="firstName">
+      </div>
+
+      <div class="field">
+        <label>Apellido</label>
+        <input type="text" formControlName="lastName">
+      </div>
+
+      <div class="field">
+        <label>Email</label>
+        <input type="email" formControlName="email">
+      </div>
+
+      <div class="field">
+        <label>Contraseña</label>
+        <input type="password" formControlName="password">
+      </div>
+
+      <div class="field">
+        <label>Rol</label>
+        <select formControlName="role">
+          <option value="ADMIN">Admin</option>
+          <option value="MANAGER">Manager</option>
+          <option value="EMPLOYEE">Empleado</option>
+        </select>
+      </div>
+
+      <div class="field">
+        <label>Teléfono</label>
+        <input type="text" formControlName="phone">
+      </div>
+
+      <div class="field">
+        <label>Cargo</label>
+        <input type="text" formControlName="position">
+      </div>
+
+      <div class="field">
+        <label>Sede</label>
+        <input type="text" formControlName="sede">
+      </div>
+
+      <div class="field">
+        <label>Área</label>
+        <input type="text" formControlName="area">
+      </div>
+
+      <div class="field">
+        <label>Fecha de nacimiento</label>
+        <input type="date" formControlName="birthday">
+      </div>
+
+    </div>
+
+    <div class="actions">
+      <button type="button" class="cancel" routerLink="/admin/users">Cancelar</button>
+      <button type="submit" class="submit" [disabled]="form.invalid">
+        Crear usuario
+      </button>
+    </div>
+        @if (success) {
+    <div class="info-message">
+        {{ success }}
+    </div>
+    }
+
+    @if (error) {
+    <div class="error-message">
+        {{ error }}
+    </div>
+    }
+
+  </form>
+
+</div>

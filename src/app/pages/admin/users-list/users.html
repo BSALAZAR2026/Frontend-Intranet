@@ -1,0 +1,71 @@
+<div class="users-container">
+
+  <div class="header">
+    <h4>Administración de usuarios</h4>
+
+    <button class="create-btn" (click)="createUser()">
+      <mat-icon>person_add</mat-icon>
+      <span>Crear usuario</span>
+    </button>
+  </div>
+
+  @if (!loading) {
+
+    <div class="table-container desktop-table">
+
+      <table>
+        <thead>
+          <tr>
+            <th>Nombre</th>
+            <th>Email</th>
+            <th>Cargo</th>
+            <th>Sede</th>
+            <th>Área</th>
+          </tr>
+        </thead>
+
+        <tbody>
+          @for (user of users; track user.id) {
+            <tr>
+              <td>{{ user.firstName }} {{ user.lastName }}</td>
+              <td class="truncate">{{ user.email }}</td>
+              <td>{{ user.position }}</td>
+              <td>{{ user.sede }}</td>
+              <td>{{ user.area }}</td>
+
+            </tr>
+          }
+        </tbody>
+      </table>
+
+      @if (users.length === 0) {
+        <div class="empty">No hay usuarios registrados</div>
+      }
+
+    </div>
+
+    <div class="mobile-list">
+
+      @for (user of users; track user.id) {
+        <div class="user-card">
+
+          <div class="user-main">
+            <div class="name">{{ user.firstName }} {{ user.lastName }}</div>
+            <div class="email">{{ user.email }}</div>
+          </div>
+
+          <div class="user-info">
+            <span><b>Cargo:</b> {{ user.position }}</span>
+            <span><b>Sede:</b> {{ user.sede }}</span>
+            <span><b>Área:</b> {{ user.area }}</span>
+          </div>
+        </div>
+      }
+
+    </div>
+
+  } @else {
+    <div class="loading">Cargando usuarios...</div>
+  }
+
+</div>

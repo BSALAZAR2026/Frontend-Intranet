@@ -3,5 +3,5 @@ export interface UserCourseProgress {
   examPassed: boolean;
   approvedAt?: string;
   score?: number;
-  attemps?: number;
+  attempts?: number;
 }
