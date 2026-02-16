@@ -1,0 +1,50 @@
+<section class="reports-container">
+
+  <h2>Reportes</h2>
+
+  <div class="reports-filters">
+    <select>
+      <option value="">Estado</option>
+      <option>Pendiente</option>
+      <option>En proceso</option>
+      <option>Completado</option>
+      <option>Cancelado</option>
+    </select>
+
+    <select>
+      <option value="">Área</option>
+      <option>TI</option>
+      <option>TH</option>
+      <option>Facturación</option>
+    </select>
+  </div>
+
+  <div class="reports-kpis">
+    <div class="kpi-card">
+      <span>Total</span>
+      <strong>42</strong>
+    </div>
+
+    <div class="kpi-card pending">
+      <span>Pendientes</span>
+      <strong>12</strong>
+    </div>
+
+    <div class="kpi-card process">
+      <span>En proceso</span>
+      <strong>18</strong>
+    </div>
+
+    <div class="kpi-card done">
+      <span>Cerrados</span>
+      <strong>12</strong>
+    </div>
+  </div>
+
+   <div class="reports-actions">
+    <button (click)="downloadCSV()">Descargar CSV</button>
+    <button (click)="downloadPDF()">Descargar PDF</button>
+  </div>
+
+
+</section>

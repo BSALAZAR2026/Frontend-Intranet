@@ -1,0 +1,109 @@
+<div class="requirements-container">
+
+  <div class="header">
+    <h4>Administración de requerimientos</h4>
+
+    <button class="create-btn" routerLink="/admin/requirements/create">
+      <mat-icon>add</mat-icon>
+      <span>Nuevo tipo de requerimiento</span>
+    </button>
+  </div>
+  
+  <form class="filters" [formGroup]="filtersForm">
+    <select formControlName="area">
+    <option value="">Área</option>
+
+    @for (area of areas; track area.id) {
+      <option [value]="area.id">
+        {{ area.name }}
+      </option>
+    }
+    </select>
+
+
+    <select formControlName="status">
+      <option value="">Estado</option>
+      <option value="PENDING">Pendiente</option>
+      <option value="IN_PROGRESS">En progreso</option>
+      <option value="COMPLETED">Completado</option>
+      <option value="REJECTED">Rechazado</option>
+    </select>
+
+    <select formControlName="priority">
+      <option value="">Prioridad</option>
+      <option value="LOW">Baja</option>
+      <option value="MEDIUM">Media</option>
+      <option value="HIGH">Alta</option>
+      <option value="CRITICAL">Crítica</option>
+    </select>
+
+    <button type="button" class="clear-btn" (click)="clearFilters()">
+      Recargar
+    </button>
+  </form>
+
+  @if (!loading) {
+
+    <div class="table-container desktop-table">
+      <table>
+        <thead>
+          <tr>
+            <th>ID</th>
+            <th>Título</th>
+            <th>Área</th>
+            <th>Estado</th>
+            <th>Prioridad</th>
+            <th>Creado</th>
+          </tr>
+        </thead>
+
+        <tbody>
+          @for (req of requirements; track req.id) {
+            <tr>
+              <td>#{{ req.id }}</td>
+              <td class="truncate">{{ req.title }}</td>
+              <td>{{ req.areaName }}</td>
+              <td>
+                <span class="badge" [ngClass]="req.status.toLowerCase()">
+                  {{ translateStatus(req.status) }}
+                </span>
+              </td>
+              <td>
+                <span class="priority" [ngClass]="req.priority.toLowerCase()">
+                  {{ translatePriority(req.priority) }}
+                </span>
+              </td>
+              <td>{{ req.createdAt | date }}</td>
+            </tr>
+          }
+        </tbody>
+      </table>
+
+      @if (requirements.length === 0) {
+        <div class="empty">No hay requerimientos registrados</div>
+      }
+    </div>
+
+    <div class="mobile-list">
+      @for (req of requirements; track req.id) {
+        <div class="requirement-card">
+
+          <div class="req-main">
+            <div class="title">{{ req.title }}</div>
+            <div class="meta">#{{ req.id }} · {{ req.areaName }}</div>
+          </div>
+
+          <div class="req-info">
+            <span><b>Estado:</b> {{ translateStatus(req.status) }}</span>
+            <span><b>Prioridad:</b> {{ translatePriority(req.priority) }}</span>
+            <span><b>Creado:</b> {{ req.createdAt | date }}</span>
+          </div>
+        </div>
+      }
+    </div>
+
+  } @else {
+    <div class="loading">Cargando requerimientos...</div>
+  }
+
+</div>

@@ -11,31 +11,40 @@
     </div>
 
     <nav class="admin-menu">
-      <a routerLink="/admin/users" routerLinkActive="active" (click)="closeMenu()">
-        <mat-icon>group</mat-icon>
-        <span>Usuarios</span>
-      </a>
 
-      <a routerLink="/admin/create-user" routerLinkActive="active" (click)="closeMenu()">
-        <mat-icon>person_add</mat-icon>
-        <span>Crear usuario</span>
-      </a>
+      @for (section of sections; track section.key) {
 
-      <a routerLink="/admin/change-email" routerLinkActive="active" (click)="closeMenu()">
-        <mat-icon>edit</mat-icon>
-        <span>Cambiar email usuario</span>
-      </a>
+        <div
+          class="admin-section"
+          (click)="toggleSection(section.key)"
+        >
+          <div class="section-title">
+            <mat-icon>{{ section.icon }}</mat-icon>
+            <span>{{ section.label }}</span>
+          </div>
 
-      <a routerLink="/admin/change-password" routerLinkActive="active" (click)="closeMenu()">
-        <mat-icon>lock</mat-icon>
-        <span>Cambiar contraseña</span>
-      </a>
+          <mat-icon class="chevron">
+            {{ openSection === section.key ? 'expand_less' : 'expand_more' }}
+          </mat-icon>
+        </div>
 
-        <a routerLink="/admin/desactivate-user" routerLinkActive="active" (click)="closeMenu()">
-            <mat-icon>person_off</mat-icon>
-            <span>Desactivar usuario</span>
-        </a>
-    </nav>
+        @if (openSection === section.key) {
+          <div class="admin-submenu">
+            @for (item of section.children; track item.route) {
+                <a
+                  [routerLink]="item.route"
+                  routerLinkActive="active"
+                  [routerLinkActiveOptions]="{ exact: true }"
+                >
+                <mat-icon>{{ item.icon }}</mat-icon>
+                <span>{{ item.label }}</span>
+              </a>
+            }
+          </div>
+        }
+      }
+</nav>
+
   </aside>
 
   <main class="admin-content">

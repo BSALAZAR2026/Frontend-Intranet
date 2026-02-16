@@ -1,6 +1,3 @@
-/* ==============================
-   LAYOUT BASE
-================================ */
 .admin-layout {
   display: flex;
   min-height: calc(100vh - 64px);
@@ -9,9 +6,6 @@
   overflow: hidden;
 }
 
-/* ==============================
-   SIDEBAR
-================================ */
 .admin-sidebar {
   width: 260px;
   background: #fff;
@@ -22,7 +16,6 @@
   z-index: 50;
 }
 
-/* BRAND */
 .admin-brand {
   display: flex;
   align-items: center;
@@ -40,9 +33,6 @@
   object-fit: contain;
 }
 
-/* ==============================
-   MENU
-================================ */
 .admin-menu {
   display: flex;
   flex-direction: column;
@@ -76,7 +66,7 @@
       &::before {
         content: '';
         position: absolute;
-        left: 0;
+        left: -4px;
         top: 15%;
         height: 70%;
         width: 4px;
@@ -87,9 +77,6 @@
   }
 }
 
-/* ==============================
-   CONTENT
-================================ */
 .admin-content {
   flex: 1;
   padding: 1rem;
@@ -97,9 +84,6 @@
   min-width: 0;
 }
 
-/* ==============================
-   MOBILE HEADER
-================================ */
 .admin-mobile-header {
   display: none;
   align-items: center;
@@ -120,9 +104,6 @@
   align-items: center;
 }
 
-/* ==============================
-   OVERLAY
-================================ */
 .admin-overlay {
   position: fixed;
   inset: 0;
@@ -130,9 +111,55 @@
   z-index: 40;
 }
 
-/* ==============================
-   RESPONSIVE (MOBILE FIRST)
-================================ */
+.admin-section {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 0.75rem 1rem;
+  cursor: pointer;
+  font-weight: 600;
+  color: #111827;
+
+  &:hover {
+    background: #f3f4f6;
+  }
+}
+
+.section-title {
+  display: flex;
+  align-items: center;
+  gap: 0.75rem;
+}
+
+.chevron {
+  font-size: 20px;
+}
+
+.admin-submenu {
+  display: flex;
+  flex-direction: column;
+  padding-left: 2.5rem;
+
+  a {
+    display: flex;
+    align-items: center;
+    gap: 0.75rem;
+    padding: 0.5rem 0;
+    color: #374151;
+    font-size: 0.95rem;
+
+    &:hover {
+      color: #111827;
+    }
+
+    &.active {
+      font-weight: 600;
+      color: #2563eb;
+    }
+  }
+}
+
+
 @media (max-width: 768px) {
 
   .admin-layout {

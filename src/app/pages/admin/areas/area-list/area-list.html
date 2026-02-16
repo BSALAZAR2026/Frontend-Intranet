@@ -1,0 +1,90 @@
+<div class="area-list-container">
+
+  <div class="header">
+    <h4>Áreas</h4>
+
+    <button class="btn-primary" routerLink="/admin/areas/create">
+      <mat-icon>add</mat-icon>
+      Crear área
+    </button>
+  </div>
+
+  @if (loading) {
+    <p class="loading">Cargando áreas...</p>
+  }
+
+  @if (!loading && areas.length === 0) {
+    <p class="empty">No hay áreas registradas</p>
+  }
+
+  @if (!loading && areas.length > 0) {
+    <table class="area-table">
+      <thead>
+        <tr>
+          <th>ID</th>
+          <th>Nombre</th>
+          <th>Estado</th>
+          <th>Creación</th>
+          <th>Acciones</th>
+        </tr>
+      </thead>
+
+      <tbody>
+        @for (area of areas; track area.id) {
+          <tr>
+            <td>{{ area.id }}</td>
+            <td>{{ area.name }}</td>
+            <td>
+              <span
+                class="status"
+                [class.active]="area.active"
+                [class.inactive]="!area.active"
+              >
+                {{ area.active ? 'Activa' : 'Inactiva' }}
+              </span>
+            </td>
+            <td>{{ area.createdAt | date:'yyyy-MM-dd HH:mm' }}</td>
+            <td class="actions">
+              <button class="icon-btn agents" [routerLink]="['/admin/areas', area.id, 'agents']" matTooltip="Gestionar agentes">
+                <mat-icon>groups</mat-icon>
+              </button>
+              <button class="icon-btn edit" matTooltip="Editar área" (click)="edit(area)">
+                <mat-icon>edit</mat-icon>
+              </button>
+              <button class="icon-btn delete" matTooltip="Eliminar área" (click)="openDeleteModal(area)">
+                <mat-icon>delete</mat-icon>
+              </button>
+            </td>
+          </tr>
+        }
+      </tbody>
+    </table>
+  }
+</div>
+
+@if (showDeleteModal) {
+  <div class="modal-backdrop">
+    <div class="modal">
+      <h3>Eliminar área</h3>
+
+      <p>
+        ¿Seguro que deseas eliminar el área
+        <strong>"{{ selectedArea?.name }}"</strong>?
+      </p>
+
+      <div class="modal-actions">
+        <button class="btn-secondary" (click)="closeDeleteModal()">
+          Cancelar
+        </button>
+
+        <button
+          class="btn-danger"
+          [disabled]="deleting"
+          (click)="confirmDelete()"
+        >
+          {{ deleting ? 'Eliminando...' : 'Eliminar' }}
+        </button>
+      </div>
+    </div>
+  </div>
+}

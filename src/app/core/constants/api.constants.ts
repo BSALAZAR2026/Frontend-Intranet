@@ -8,5 +8,6 @@ export const API_ENDPOINTS = {
   documents: `${API_BASE_URL}/api/documents`,
   birthdays: `${API_BASE_URL}/api/users/birthdays`,
   certificates: `${API_BASE_URL}/api/academy/certificates`,
-  academy: `${API_BASE_URL}/api/academy`
+  academy: `${API_BASE_URL}/api/academy`,
+  requirements: `${API_BASE_URL}/api/requirements`,
 };

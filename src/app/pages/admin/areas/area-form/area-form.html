@@ -1,0 +1,65 @@
+<div class="area-form-container">
+
+  <h2 class="title">
+    <mat-icon aria-hidden="true">
+      {{ isEditMode ? 'edit' : 'add_business' }}
+    </mat-icon>
+    {{ isEditMode ? 'Editar área' : 'Crear área' }}
+  </h2>
+
+  @if (loading) {
+    <p class="loading">Cargando...</p>
+  }
+
+  @if (!loading) {
+    <form [formGroup]="form" (ngSubmit)="save()">
+
+      <div class="form-group">
+        <label for="area-name">Nombre del área</label>
+
+        <input
+          id="area-name"
+          type="text"
+          formControlName="name"
+          placeholder="Nombre del área"
+        />
+
+        @if (form.get('name')?.touched && form.get('name')?.invalid) {
+          <small class="error">
+            El nombre es obligatorio (máx. 200 caracteres)
+          </small>
+        }
+      </div>
+
+      @if (isEditMode) {
+        <div class="form-group checkbox">
+          <label>
+            <input type="checkbox" formControlName="active" />
+            Área activa
+          </label>
+        </div>
+      }
+
+      <div class="actions">
+        <button
+          type="button"
+          class="btn-secondary"
+          (click)="cancel()"
+          [disabled]="loading"
+        >
+          Cancelar
+        </button>
+
+        <button
+          type="submit"
+          class="btn-primary"
+          [disabled]="loading || form.invalid"
+        >
+          {{ isEditMode ? 'Guardar cambios' : 'Crear área' }}
+        </button>
+      </div>
+
+    </form>
+  }
+
+</div>

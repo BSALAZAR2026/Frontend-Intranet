@@ -1,0 +1,103 @@
+<section class="agents-container">
+  <div class="agents-header">
+        <h2>Agentes</h2>
+
+        <button class="btn-primary" (click)="openDrawer()">
+            + Nuevo agente
+        </button>
+  </div>
+
+  <div class="agents-list">
+
+    @for (agent of agents; track agent.id) {
+      <div class="agent-card">
+
+        <div class="agent-header">
+          <div class="avatar">
+            {{ agent.name.charAt(0) }}
+          </div>
+
+          <div class="main-info">
+            <h3>{{ agent.name }}</h3>
+            <span class="area">{{ agent.area }}</span>
+          </div>
+        </div>
+
+        <div class="agent-details">
+          <div>
+            <label>Cédula</label>
+            <span>{{ agent.cedula }}</span>
+          </div>
+
+          <div>
+            <label>Teléfono</label>
+            <span>{{ agent.phone }}</span>
+          </div>
+        </div>
+
+        <div class="agent-stats">
+          <span>
+            <strong>{{ agent.assigned }}</strong> asignados
+          </span>
+
+          <span
+            class="status"
+            [class.active]="agent.active"
+          >
+            {{ agent.active ? 'Activo' : 'Inactivo' }}
+          </span>
+        </div>
+
+      </div>
+    }
+
+  </div>
+</section>
+
+@if (isDrawerOpen) {
+  <div class="drawer-backdrop" (click)="closeDrawer()"></div>
+
+  <aside class="drawer">
+    <header class="drawer-header">
+      <h3>Nuevo agente</h3>
+      <button class="close-btn" (click)="closeDrawer()">✕</button>
+    </header>
+
+    <form class="drawer-form">
+      <div class="form-group">
+        <label>Nombre completo</label>
+        <input type="text" placeholder="Luis Vélez" />
+      </div>
+
+      <div class="form-group">
+        <label>Cédula</label>
+        <input type="text" />
+      </div>
+
+      <div class="form-group">
+        <label>Teléfono</label>
+        <input type="text" />
+      </div>
+
+      <div class="form-group">
+        <label>Área</label>
+        <select>
+          <option>TI</option>
+          <option>TH</option>
+          <option>Facturación</option>
+        </select>
+      </div>
+
+      <div class="drawer-actions">
+        <button type="button" class="btn-secondary" (click)="closeDrawer()">
+          Cancelar
+        </button>
+
+        <button type="submit" class="btn-primary">
+          Guardar
+        </button>
+      </div>
+    </form>
+  </aside>
+}
+

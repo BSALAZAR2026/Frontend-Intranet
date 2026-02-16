@@ -5,7 +5,8 @@ import { reverseAuthGuard } from './guards/reverse.guard';
 
 export const routes: Routes = [
 
-  { path: '', redirectTo: 'auth/login', pathMatch: 'full' },
+  { path: '', redirectTo: 'home', pathMatch: 'full' },
+
 
   {
     path: 'auth',
@@ -13,7 +14,7 @@ export const routes: Routes = [
       .then(m => m.AUTH_ROUTES),
       canActivate: [reverseAuthGuard]
   },
-
+  
   {
     path: '',
     component: MainLayoutComponent,
@@ -23,7 +24,7 @@ export const routes: Routes = [
       { path: 'profile', loadComponent: () => import('./pages/profile/profile').then(m => m.ProfilePageComponent)},
       {path: 'academy', loadChildren: () => import('./pages/academy/routes/academy.routes').then(m => m.ACADEMY_ROUTES)},
       { path: 'documents', loadComponent: () => import('./pages/documents/documents').then(m => m.DocumentsComponent)},
-      { path: 'requeriments', loadComponent: () => import('./pages/requeriments/requeriments').then(m => m.RequerimentsComponent)},
+      { path: 'requeriments', loadChildren: () => import('./pages/requeriments/routes/requirements.routes').then(m => m.REQUIREMENTS_ROUTES)},
       {path: 'admin', loadChildren: () => import('./pages/admin/routes/admin.routes').then(m => m.ADMIN_ROUTES)}
     ]
   },

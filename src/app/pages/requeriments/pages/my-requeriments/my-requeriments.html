@@ -1,0 +1,51 @@
+<div class="requeriments-list">
+
+  @for (req of requeriments; track req.id) {
+
+    <div class="requeriment-card">
+
+      <div class="card-header">
+
+        <div class="title-block">
+          <h3>{{ req.area }} · {{ req.type }}</h3>
+
+          <span class="priority {{ req.priority }}">
+            {{ req.priority }}
+          </span>
+        </div>
+
+        <span class="status {{ req.status }}">
+          {{ req.status.replace('_', ' ') }}
+        </span>
+
+      </div>
+
+      <p class="description">
+        {{ req.description }}
+      </p>
+
+      @if (req.attachments && req.attachments.length > 0) {
+        <div class="attachments">
+          <span>📎 Adjuntos:</span>
+
+          @for (file of req.attachments; track file) {
+            <small>{{ file }}</small>
+          }
+        </div>
+      }
+
+      <div class="card-footer">
+
+        <div class="creator">
+          👤 {{ req.createdBy.name }}
+        </div>
+
+        <div class="meta">
+          <span>#{{ req.id }}</span>
+          <span>{{ req.createdAt | date:'dd/MM/yyyy' }}</span>
+        </div>
+      </div>
+    </div>
+  }
+
+</div>

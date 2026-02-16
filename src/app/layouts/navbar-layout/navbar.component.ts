@@ -78,7 +78,6 @@ export class NavbarComponent implements OnInit {
     }
     
     this.cdr.detectChanges();
-    console.log('Menu closed');
   }
 
   onUserMenuClick(event: MouseEvent) {

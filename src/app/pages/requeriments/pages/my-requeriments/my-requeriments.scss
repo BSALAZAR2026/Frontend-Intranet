@@ -1,0 +1,115 @@
+.requeriments-list {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(320px, 520px));
+  gap: 1.75rem;
+  justify-content: center;
+}
+
+
+.requeriment-card {
+  background: #fff;
+  border-radius: 14px;
+  padding: 1.4rem;
+  box-shadow: 0 8px 20px rgba(0,0,0,0.06);
+  display: flex;
+  flex-direction: column;
+  gap: 0.9rem;
+}
+
+.card-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-start;
+}
+
+.title-block {
+  display: flex;
+  flex-direction: column;
+  gap: 0.3rem;
+}
+
+.priority {
+  font-size: 0.75rem;
+  font-weight: 600;
+  padding: 0.2rem 0.6rem;
+  border-radius: 6px;
+  width: fit-content;
+}
+
+.priority.BAJA {
+  background: #ecfdf5;
+  color: #059669;
+}
+
+.priority.MEDIA {
+  background: #fffbeb;
+  color: #d97706;
+}
+
+.priority.ALTA {
+  background: #fef2f2;
+  color: #dc2626;
+}
+
+.priority.CRITICA {
+  background: #7f1d1d;
+  color: #fff;
+}
+
+.status {
+  font-size: 0.75rem;
+  font-weight: 600;
+  padding: 0.3rem 0.7rem;
+  border-radius: 20px;
+  text-transform: capitalize;
+}
+
+.status.pendiente {
+  background: #fef3c7;
+  color: #92400e;
+}
+
+.status.en_proceso {
+  background: #dbeafe;
+  color: #1e40af;
+}
+
+.status.aprobado {
+  background: #dcfce7;
+  color: #166534;
+}
+
+.status.rechazado {
+  background: #fee2e2;
+  color: #991b1b;
+}
+
+.description {
+  font-size: 0.9rem;
+  color: #374151;
+}
+
+.attachments {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.4rem;
+  font-size: 0.8rem;
+  color: #6b7280;
+}
+
+.card-footer {
+  display: flex;
+  justify-content: space-between;
+  font-size: 0.8rem;
+  color: #6b7280;
+}
+
+.creator {
+  font-weight: 600;
+}
+
+.meta {
+  display: flex;
+  gap: 0.6rem;
+}
+
