@@ -156,6 +156,35 @@
   }
 }
 
+.carousel{
+  display: flex;
+  justify-content: space-evenly;
+  align-items: center;
+  width: 100%;
+}
+
+.field-carousel{
+  display: none;
+  text-align: center;
+  width: 50%;
+}
+
+.field-carousel.active{
+  display: block;
+}
+
+.subTitle{
+  background-color: none;
+}
+
+.media{
+  width: 100%;
+}
+
+.next, .prev{
+  height: 50px;
+}
+
 @media (max-width: 768px) {
   .home-container {
     display: flex;
