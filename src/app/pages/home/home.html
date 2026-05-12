@@ -4,23 +4,16 @@
       <h2>¡Bienvenido a la Intranet ProScience!</h2>
 
       <div class="carousel">
-        <button class="prev" (click)="prev()">‹</button>
-        
+
         <div class="field-carousel" *ngFor="let field of fields; let i = index" [class.active]="i === currentIndex">
           <h3 class="subTitle">{{field.title}}</h3>
 
-          <img *ngIf="field.type === 'image'"
-          [src]="field.src"
-          class="media"/>
+          <img *ngIf="field.type === 'image'" [src]="field.src" class="media" />
 
-          <video class="media" 
-          *ngIf="field.type === 'video'"
-          [src]="field.src"
-          controls></video>
+          <video class="media" *ngIf="field.type === 'video'" [src]="field.src" controls></video>
 
-          <p *ngIf="field.description">{{field.description}}</p>
+          <a [href]="field.description" target="_blank" *ngIf="field.description">Formulario</a>
         </div>
-        <button class="next" (click)="next()">›</button>
       </div>
     </section>
   </main>

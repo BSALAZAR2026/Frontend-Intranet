@@ -39,12 +39,30 @@ import { MatSnackBar } from '@angular/material/snack-bar';
 export class ProfilePageComponent implements OnInit {
   user!: User;
 
-  constructor(private userService: UserService, private snackBar: MatSnackBar) {}
+  constructor(private userService: UserService, private snackBar: MatSnackBar) { }
 
   ngOnInit() {
     this.userService.getCurrentUser().subscribe({
-      next: (data) => (this.user = data),
-      error: (err) => console.error('Error cargando perfil:', err),
+      next: (data) => {
+        this.user = data;
+        if (this.user?.id) {
+          this.userService.getAuthByUserId(this.user.id).subscribe({
+            next: (authData) => {
+              if (!this.user) return;
+              this.user = {
+                ...this.user,
+                email: authData.email
+              };
+            },
+            error: (err) => {
+              console.error('Error cargando auth:', err);
+            }
+          });
+        }
+      },
+      error: (err) => {
+        console.error('Error cargando perfil:', err);
+      }
     });
   }
 

@@ -165,12 +165,13 @@
 
 .field-carousel{
   display: none;
-  text-align: center;
-  width: 50%;
 }
 
 .field-carousel.active{
-  display: block;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  width: 65%;
 }
 
 .subTitle{
@@ -183,6 +184,10 @@
 
 .next, .prev{
   height: 50px;
+}
+
+a{
+  color: #000;
 }
 
 @media (max-width: 768px) {

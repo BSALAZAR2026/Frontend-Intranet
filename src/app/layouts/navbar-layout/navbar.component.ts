@@ -27,15 +27,32 @@ export class NavbarComponent implements OnInit {
     private router: Router,
     private cdr: ChangeDetectorRef,
     @Inject(PLATFORM_ID) private platformId: Object
-  ) {}
+  ) { }
 
   ngOnInit(): void {
     if (isPlatformBrowser(this.platformId)) {
       this.userService.getCurrentUser().subscribe({
         next: (data) => {
           this.user = { ...data, loginTime: new Date() };
-          this.sessionService.setLoginInfo(this.user);
-          this.role = this.sessionService.getRole();
+          if (this.user?.id) {
+            this.userService.getAuthByUserId(this.user.id).subscribe({
+              next: (authData) => {
+
+                if (!this.user) return;
+
+                this.user = {
+                  ...this.user,
+                  email: authData.email
+                };
+
+                this.sessionService.setLoginInfo(this.user);
+                this.role = this.sessionService.getRole();
+
+                console.log("DATA: ", data)
+              }
+            });
+          }
+
         }
       });
     }
@@ -49,11 +66,11 @@ export class NavbarComponent implements OnInit {
     event.preventDefault();
     event.stopPropagation();
     event.stopImmediatePropagation();
-    
+
     this.isMenuOpen = !this.isMenuOpen;
-    
+
     this.cdr.detectChanges();
-    
+
     const menuElement = document.querySelector('.side-menu');
     if (menuElement) {
       if (this.isMenuOpen) {
@@ -69,14 +86,14 @@ export class NavbarComponent implements OnInit {
       event.preventDefault();
       event.stopPropagation();
     }
-    
+
     this.isMenuOpen = false;
-    
+
     const menuElement = document.querySelector('.side-menu');
     if (menuElement) {
       menuElement.classList.remove('open');
     }
-    
+
     this.cdr.detectChanges();
   }
 

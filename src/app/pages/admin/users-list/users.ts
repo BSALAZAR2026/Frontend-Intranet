@@ -36,6 +36,17 @@ export class UsersComponent implements OnInit {
     this.userService.getAllAdminUsers().subscribe({
       next: (res) => {
         this.users = res;
+        this.users.forEach(user =>{
+          if(user.id){
+            this.userService.getAuthByUserId(user.id).subscribe(
+              {
+              next: (outhDate) =>{
+                user.email = outhDate.email;
+              }
+            }
+)
+          }
+        });
         this.loading = false;
       },
       error: () => {

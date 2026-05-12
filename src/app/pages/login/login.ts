@@ -16,8 +16,8 @@ export interface LoginCredentials {
   styleUrls: ['./login.scss']
 })
 export class Login {
-  email = '';
-  password = '';
+  email = 'proscience@proscience.com.co';
+  password = 'ProScience';
   showModal = false;
 
   constructor(public facade: LoginFacade) {}

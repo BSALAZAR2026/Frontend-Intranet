@@ -28,7 +28,7 @@
           @for (user of users; track user.id) {
             <tr>
               <td>{{ user.firstName }} {{ user.lastName }}</td>
-              <td class="truncate">{{ user.email }}</td>
+              <td class="truncate">{{ user?.email }}</td>
               <td>{{ user.position }}</td>
               <td>{{ user.sede }}</td>
               <td>{{ user.area }}</td>

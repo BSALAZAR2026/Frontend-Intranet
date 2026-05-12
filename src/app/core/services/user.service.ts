@@ -18,6 +18,7 @@ export class UserService {
 
   getCurrentUser(): Observable<User> {
     if (!isPlatformBrowser(this.platformId)) {
+      console.log("USER: ",null as unknown as User)
       return of(null as unknown as User);
     }
 
@@ -43,6 +44,17 @@ export class UserService {
       headers: this.getAuthHeaders(),
     });
   }
+
+  getAuthByUserId(userId: string): Observable<any> {
+
+  return this.http.get<any>(
+    `${API_ENDPOINTS.auth}/${userId}`,
+    {
+      headers: this.getAuthHeaders(),
+    }
+  );
+
+}
 
   updateUserProfile(id: string, data: Partial<User>): Observable<User> {
     if (!isPlatformBrowser(this.platformId)) {
