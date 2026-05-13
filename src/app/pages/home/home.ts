@@ -51,29 +51,23 @@ export class HomeComponent {
       description: ''
     },
     {
-      title: 'Votación para la elección ',
-      type: 'image',
-      src: 'assets/images/formulario.jpg',
-      description: 'https://forms.gle/wRqYsoifvRbR8z867'
-    },
-    {
-      title: 'Capacitación',
+      title: 'Capacitación Siesa del mes de Mayo',
       type: 'image',
       src: 'assets/images/modulos1.jpeg',
       description: ''
     },
     {
-      title: 'Capacitación',
+      title: 'Capacitación Siesa del mes de Mayo',
       type: 'image',
       src: 'assets/images/modulos2.jpeg',
       description: ''
     },
     {
-      title: 'Capacitación',
+      title: 'Capacitación Siesa del mes de Mayo',
       type: 'image',
       src: 'assets/images/modulos3.jpeg',
       description: ''
-    }
+      }
   ]
 
 
@@ -101,4 +95,26 @@ export class HomeComponent {
       (this.currentIndex - 1 + this.fields.length) %
       this.fields.length;
   }
+
+  // Añade estos métodos a tu clase HomeComponent
+
+manualNext(): void {
+  this.restartTimer();
+  this.next();
+}
+
+manualPrev(): void {
+  this.restartTimer();
+  this.prev();
+}
+
+goToSlide(index: number): void {
+  this.restartTimer();
+  this.currentIndex = index;
+}
+
+restartTimer(): void {
+  clearInterval(this.intervalId);
+  this.startAutoSlide();
+}
 }

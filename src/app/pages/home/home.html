@@ -3,18 +3,40 @@
     <section class="media-section">
       <h2>¡Bienvenido a la Intranet ProScience!</h2>
 
-      <div class="carousel">
+      <div class="carousel-container">
+  <div class="carousel">
+    <button class="nav-btn prev-btn" (click)="manualPrev()">&#10094;</button>
+    <div class="carousel-track" [style.transform]="'translateX(' + (-currentIndex * 100) + '%)'">
+      <div 
+        class="field-carousel" 
+        *ngFor="let field of fields; let i = index" 
+      >
+        <h3 class="subTitle" *ngIf="field.title">{{field.title}}</h3>
+        
+        <img *ngIf="field.type === 'image'" [src]="field.src" class="media" />
+        <video class="media" *ngIf="field.type === 'video'" [src]="field.src" controls></video>
 
-        <div class="field-carousel" *ngFor="let field of fields; let i = index" [class.active]="i === currentIndex">
-          <h3 class="subTitle">{{field.title}}</h3>
-
-          <img *ngIf="field.type === 'image'" [src]="field.src" class="media" />
-
-          <video class="media" *ngIf="field.type === 'video'" [src]="field.src" controls></video>
-
-          <a [href]="field.description" target="_blank" *ngIf="field.description">Formulario</a>
-        </div>
+        <a [href]="field.description" target="_blank" class="btn-form" *ngIf="field.description">
+          Abrir Formulario
+        </a>
       </div>
+    </div>
+
+    <!-- Botones de navegación -->
+    
+    <button class="nav-btn next-btn" (click)="manualNext()">&#10095;</button>
+  </div>
+
+  <!-- Indicadores (Circulitos) -->
+  <div class="indicators">
+    <span 
+      *ngFor="let field of fields; let i = index" 
+      class="dot" 
+      [class.active-dot]="i === currentIndex"
+      (click)="goToSlide(i)"
+    ></span>
+  </div>
+</div>
     </section>
   </main>
   <aside class="home-right">

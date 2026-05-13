@@ -83,6 +83,7 @@
   gap: 16px;
   width: 100%;
   max-width: 900px;
+  max-height: 1600px;
   margin: 0 auto;
   padding: 10px 0;
   border-radius: 16px;
@@ -115,8 +116,13 @@
 }
 
 @keyframes moveLeft {
-  0% { transform: translateX(0); }
-  100% { transform: translateX(-100%); }
+  0% {
+    transform: translateX(0);
+  }
+
+  100% {
+    transform: translateX(-100%);
+  }
 }
 
 @keyframes slideDown {
@@ -124,6 +130,7 @@
     opacity: 0;
     transform: translateY(-10px);
   }
+
   to {
     opacity: 1;
     transform: translateY(0);
@@ -135,6 +142,7 @@
     opacity: 0;
     transform: translateY(-10px);
   }
+
   to {
     opacity: 1;
     transform: translateY(0);
@@ -150,43 +158,152 @@
   gap: 16px;
   overflow: visible;
 
-  > * {
+  >* {
     width: 100%;
     box-sizing: border-box;
   }
 }
 
-.carousel{
-  display: flex;
-  justify-content: space-evenly;
-  align-items: center;
+.carousel-container {
+  position: relative;
   width: 100%;
+  height: 600px;
+  max-width: 900px;
+  /* O el ancho que prefieras */
+  margin: auto;
+  overflow: hidden;
+  /* Esto es vital para que nada se salga */
+  border-radius: 20px;
+  /* Fondo negro para que las imágenes anchas luzcan mejor */
 }
 
-.field-carousel{
-  display: none;
+.carousel {
+  display: flex;
+  justify-content: center;
+  position: relative;
+  height: 600px;
 }
 
-.field-carousel.active{
+.carousel-track {
+  display: flex;
+  width: 100%;
+  height: 450px;
+  /* Altura fija para que todas las vistas sean iguales */
+  transition: transform 0.7s cubic-bezier(0.45, 0, 0.55, 1);
+}
+
+.field-carousel {
+  flex: 0 0 100%;
+  width: 100%;
+  height: 100%;
   display: flex;
   flex-direction: column;
   align-items: center;
-  width: 65%;
+  justify-content: center;
+  position: relative;
+  top: 65px;
 }
 
-.subTitle{
+.media {
+  /* Estas tres líneas aseguran que la imagen nunca se salga */
+  max-width: 100%;
+  max-height: 100%;
+  width: auto;
+  height: auto;
+
+  object-fit: contain;
+  /* Mantiene la imagen completa */
+  display: block;
+}
+
+/* Botones con estilo moderno */
+.nav-btn {
+  position: absolute;
+  top: 50%;
+  width: 45px;
+  height: 45px;
+  transform: translateY(-50%);
+  background: rgba(255, 255, 255, 0.2);
+  backdrop-filter: blur(5px);
+  color: #00bfca;
+  border: 1px solid rgba(0, 0, 0, 0.304);
+  cursor: pointer;
+  font-size: 24px;
+  border-radius: 50%;
+  z-index: 10;
+  transition: all 0.3s;
+
+  &:hover {
+    background: #00bfca;
+    transform: translateY(-50%) scale(1.1);
+  }
+
+ 
+
+  &.prev-btn {
+    left: 20px;
+  }
+
+  &.next-btn {
+    right: 20px;
+  }
+}
+ .nav-btn:hover{
+    color: white;
+  }
+/* Puntos de abajo */
+.indicators {
+  display: flex;
+  justify-content: center;
+  gap: 8px;
+  position: relative;
+  top: -26px;
+  
+
+  .dot {
+    width: 10px;
+    height: 10px;
+    background: rgba(87, 87, 87, 0.2);
+    border-radius: 50%;
+    
+    cursor: pointer;
+    transition: 0.3s;
+
+    &.active-dot {
+      background: #00bfca;
+      width: 25px;
+      /* Efecto de píldora para el activo */
+      border-radius: 10px;
+    }
+  }
+}
+
+.btn-form {
+  margin-top: 15px;
+  padding: 10px 20px;
+  background: #ffffff;
+  color: #333;
+  text-decoration: none;
+  border-radius: 20px;
+  font-weight: bold;
+  transition: transform 0.2s;
+  
+
+  &:hover {
+    transform: scale(1.05);
+  }
+}
+
+.subTitle {
   background-color: none;
 }
 
-.media{
-  width: 100%;
-}
-
-.next, .prev{
+.next,
+.prev {
   height: 50px;
 }
 
-a{
+a {
   color: #000;
 }
 
@@ -280,4 +397,3 @@ a{
     min-width: 0 !important;
   }
 }
-
