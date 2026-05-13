@@ -67,6 +67,12 @@ export class HomeComponent {
       type: 'image',
       src: 'assets/images/modulos3.jpeg',
       description: ''
+      },
+    {
+      title: 'Integrantes de Copasst 2026 - 2028',
+      type: 'image',
+      src: 'assets/images/candidatos.jpeg',
+      description: ''
       }
   ]
 
