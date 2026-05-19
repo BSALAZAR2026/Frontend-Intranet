@@ -73,6 +73,24 @@ export class HomeComponent {
       type: 'image',
       src: 'assets/images/candidatos.jpeg',
       description: ''
+      },
+      {
+      title: 'Alianza con Café Quindío',
+      type: 'image',
+      src: 'assets/images/cafePro.jpeg',
+      description: 'https://www.instagram.com/reel/DYaSydSIw8f/?igsh=MWp2aWsxaHcxYjNrNQ=='
+      },
+      {
+      title: 'Invitación a Mindset Digital',
+      type: 'image',
+      src: 'assets/images/invitacion.jpeg',
+      description: ''
+      },
+      {
+      title: 'Conformación Oficial del COCOLAB 2026 - 2028',
+      type: 'image',
+      src: 'assets/images/cocolab.jpeg',
+      description: ''
       }
   ]
 
